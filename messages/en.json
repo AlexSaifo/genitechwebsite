@@ -14,6 +14,11 @@
     "logoAlt": "GeniTech logo"
   },
   "Home": {
-    "title": "Hello world!"
+    "title": "Hello world!",
+    "heroTitle": "Genitech",
+    "heroSubtitle": "Tech You Trust",
+    "heroDescription": "We believe technology is not just a tool, but a path to creativity and excellence. By blending technical brilliance with innovative solutions, we help businesses achieve their digital goals.",
+    "heroDiscover": "Discover More",
+    "heroContact": "Contact Us"
   }
 }

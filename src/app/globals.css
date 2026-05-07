@@ -219,7 +219,9 @@ body {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 260ms ease, opacity 180ms ease;
+  transition:
+    max-height 260ms ease,
+    opacity 180ms ease;
 }
 
 .site-header__mobile-panel.is-open {
@@ -275,4 +277,8 @@ body {
   .site-header__mobile-panel {
     display: none;
   }
+}
+
+.home-anchor {
+  height: 1px;
 }
