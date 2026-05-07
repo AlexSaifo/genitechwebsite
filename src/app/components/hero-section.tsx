@@ -28,78 +28,80 @@ export default function HeroSection() {
       id="home"
       className="relative overflow-hidden px-4 pt-6 md:px-6 lg:px-8"
     >
-      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-10 pb-3 lg:grid-cols-2 lg:gap-8">
+      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 justify-items-center items-center gap-10 pb-3 lg:grid-cols-2 lg:justify-items-stretch lg:gap-8">
         <div
-          className="relative order-2 mx-auto h-[320px] w-full max-w-[655px] min-[500px]:h-[430px] lg:order-1 lg:h-[508px]"
+          className="relative order-2 mx-auto h-[calc(508px*0.52)]  max-w-[665] justify-self-center min-[420px]:h-[calc(508px*0.62)] md:h-[calc(508px*0.76)] lg:order-1 lg:h-[508px] lg:justify-self-auto"
           aria-hidden="true"
         >
-          <div
-            className={`absolute left-1/2 top-4 h-[250px] w-[130px] -translate-x-[65%] overflow-visible rounded-3xl min-[500px]:h-[360px] min-[500px]:w-[170px] lg:left-[147px] lg:top-[26px] lg:h-[422px] lg:w-[194px] lg:translate-x-0 ${cardTone}`}
-          >
-            <Image
-              src="/assets/images/hero/hero-side-icon.png"
-              alt=""
-              width={52}
-              height={68}
-              className="absolute bottom-[-30px] left-[160px] max-w-[none] w-[115px]"
-            />
-            <Image
-              src="/assets/images/hero/hero-character.png"
-              alt=""
-              width={348}
-              height={623}
-              className="absolute bottom-0 left-1/2 h-auto w-[210px] -translate-x-1/2 min-[500px]:w-[300px] lg:w-[348px] max-w-[none]"
-              priority
-            />
-          </div>
+          <div className="absolute left-1/2 top-0 h-[508px] w-[800px] origin-top -translate-x-1/2 scale-[0.52] min-[420px]:scale-[0.62] md:scale-[0.76] lg:scale-100">
+            <div
+              className={`absolute left-[147px] top-[26px] h-[422px] w-[194px] overflow-visible rounded-3xl ${cardTone}`}
+            >
+              <Image
+                src="/assets/images/hero/hero-side-icon.png"
+                alt=""
+                width={52}
+                height={68}
+                className="absolute bottom-[-30px] left-[160px] max-w-[none] w-[115px]"
+              />
+              <Image
+                src="/assets/images/hero/hero-character.png"
+                alt=""
+                width={348}
+                height={623}
+                className="absolute bottom-0 left-1/2 h-auto w-[348px] max-w-[none] -translate-x-1/2"
+                priority
+              />
+            </div>
 
-          <div
-            className={`absolute right-2 top-4 flex h-[120px] w-[190px] flex-col items-center justify-center rounded-3xl min-[500px]:h-[170px] min-[500px]:w-[270px] lg:left-[357px] lg:top-[26px] lg:h-[203px] lg:w-[298px] ${cardTone}`}
-          >
-            <Image
-              src="/assets/images/hero/hero-small-logo.png"
-              alt=""
-              width={102}
-              height={37}
-              className="h-auto w-[80px] min-[500px]:w-[96px] lg:w-[102px] absolute left-[220px] bottom-[-8px]"
-            />
-            <Image
-              src="/genitech-icon.svg"
-              alt={tNav("logoAlt")}
-              width={102}
-              height={37}
-              priority
-            />
-            <p className="m-0 text-[20px] font-bold leading-[1.6] text-white min-[500px]:text-[28px] lg:text-[30px] lg:leading-[56px]">
-              Tech you Trust
-            </p>
-          </div>
+            <div
+              className={`absolute left-[357px] top-[26px] flex h-[203px] w-[298px] flex-col items-center justify-center rounded-3xl ${cardTone}`}
+            >
+              <Image
+                src="/assets/images/hero/hero-small-logo.png"
+                alt=""
+                width={102}
+                height={37}
+                className="absolute bottom-[-8px] left-[220px] h-auto w-[102px]"
+              />
+              <Image
+                src="/genitech-icon.svg"
+                alt={tNav("logoAlt")}
+                width={102}
+                height={37}
+                priority
+              />
+              <p className="m-0 text-[30px] font-bold leading-[56px] text-white">
+                Tech you Trust
+              </p>
+            </div>
 
-          <div
-            className={`absolute right-2 top-[152px] h-[120px] w-[190px] overflow-hidden rounded-3xl min-[500px]:top-[205px] min-[500px]:h-[170px] min-[500px]:w-[270px] lg:left-[357px] lg:top-[247px] lg:h-[203px] lg:w-[298px] ${cardTone}`}
-          >
-            <Image
-              src="/assets/images/hero/hero-phone.png"
-              alt=""
-              width={229}
-              height={163}
-              className={`absolute left-1/2 top-1/2 h-auto w-[145px] -translate-y-1/2 transition-all duration-700 ease-in-out min-[500px]:w-[205px] lg:w-[229px] ${
-                showPhone
-                  ? "-translate-x-1/2 opacity-100"
-                  : "-translate-x-[190px] opacity-0"
-              }`}
-            />
-            <Image
-              src="/assets/images/hero/hero-badge.png"
-              alt=""
-              width={224}
-              height={123}
-              className={`absolute left-1/2 top-1/2 h-auto w-[145px] -translate-y-1/2 transition-all duration-700 ease-in-out min-[500px]:w-[200px] lg:w-[224px] ${
-                showPhone
-                  ? "translate-x-[190px] opacity-0"
-                  : "-translate-x-1/2 opacity-100"
-              }`}
-            />
+            <div
+              className={`absolute left-[357px] top-[247px] h-[203px] w-[298px] overflow-hidden rounded-3xl ${cardTone}`}
+            >
+              <Image
+                src="/assets/images/hero/hero-phone.png"
+                alt=""
+                width={229}
+                height={163}
+                className={`absolute left-1/2 top-1/2 h-auto w-[229px] -translate-y-1/2 transition-all duration-700 ease-in-out ${
+                  showPhone
+                    ? "-translate-x-1/2 opacity-100"
+                    : "-translate-x-[190px] opacity-0"
+                }`}
+              />
+              <Image
+                src="/assets/images/hero/hero-badge.png"
+                alt=""
+                width={224}
+                height={123}
+                className={`absolute left-1/2 top-1/2 h-auto w-[224px] -translate-y-1/2 transition-all duration-700 ease-in-out ${
+                  showPhone
+                    ? "translate-x-[190px] opacity-0"
+                    : "-translate-x-1/2 opacity-100"
+                }`}
+              />
+            </div>
           </div>
         </div>
 
