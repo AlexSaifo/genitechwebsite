@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #03080e;
+  --foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+
+  /* Typography */
+  --font-sans: var(--font-cairo);
+  --font-display: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Core neutrals */
+  --color-night-990: #03080e;
+  --color-night-980: #030910;
+  --color-night-970: #050914;
+  --color-night-940: #13192b;
+  --color-surface-900: #090913;
+  --color-surface-700: #3f4042;
+  --color-white: #ffffff;
+
+  /* Primary accent family */
+  --color-cyan-500: #04d1f1;
+  --color-cyan-600: #0ca5f0;
+  --color-cyan-700: #086ea8;
+  --color-cyan-800: #01515e;
+  --color-sky-500: #40b8f3;
+
+  /* Secondary accent family */
+  --color-violet-700: #4a2a91;
+  --color-violet-800: #2b3cb8;
+  --color-purple-700: #7c51bd;
+  --color-purple-900: #1f0449;
+
+  /* Brand pink/magenta family */
+  --color-fuchsia-700: #a81e98;
+  --color-fuchsia-730: #a61e97;
+  --color-fuchsia-760: #ad1f9d;
+  --color-magenta-700: #ba2495;
+  --color-magenta-900: #5d0046;
+
+  /* Alpha overlays from design */
+  --color-white-77: rgba(255, 255, 255, 0.77);
+  --color-white-66: rgba(255, 255, 255, 0.66);
+  --color-white-56: rgba(255, 255, 255, 0.56);
+  --color-white-44: rgba(255, 255, 255, 0.44);
+  --color-white-32: rgba(255, 255, 255, 0.32);
+  --color-white-22: rgba(255, 255, 255, 0.22);
+
+  /* Design-matched text sizes */
+  --text-2xs: 0.75rem;
+  --text-2xs--line-height: 1.375rem;
+  --text-xs: 0.875rem;
+  --text-xs--line-height: 1.625rem;
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.875rem;
+  --text-base: 1.125rem;
+  --text-base--line-height: 2.125rem;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 2.313rem;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 2.813rem;
+  --text-2xl: 2.2667rem;
+  --text-2xl--line-height: 4.25rem;
+  --text-3xl: 2.625rem;
+  --text-3xl--line-height: 3.188rem;
+  --text-4xl: 3rem;
+  --text-4xl--line-height: 5.625rem;
+  --text-5xl: 3.25rem;
+  --text-5xl--line-height: 6.063rem;
+  --text-hero: 6.25rem;
+  --text-hero--line-height: 11.688rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #03080e;
+    --foreground: #ffffff;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-cairo), "Cairo", sans-serif;
 }
