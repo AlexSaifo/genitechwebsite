@@ -19,6 +19,22 @@
     "heroSubtitle": "Tech You Trust",
     "heroDescription": "We believe technology is not just a tool, but a path to creativity and excellence. By blending technical brilliance with innovative solutions, we help businesses achieve their digital goals.",
     "heroDiscover": "Discover More",
-    "heroContact": "Contact Us"
+    "heroContact": "Contact Us",
+    "statsPanelDownloadsValue": "10,000+",
+    "statsPanelDownloadsLabel": "Client app downloads",
+    "statsPanelSupportValue": "24/7",
+    "statsPanelSupportLabel": "Always available to support you",
+    "statsPanelRatingValue": "4.9/5",
+    "statsPanelRatingLabel": "Average client rating",
+    "statsTopRetentionValue": "80%+",
+    "statsTopRetentionLabel": "of our clients return to work with us",
+    "statsTopVisitsValue": "10,000+",
+    "statsTopVisitsLabel": "visits to our client websites",
+    "statsCenterExperienceValue": "4+",
+    "statsCenterExperienceLabel": "years of experience in the field",
+    "statsBottomStabilityValue": "99%+",
+    "statsBottomStabilityLabel": "project stability rate",
+    "statsBottomClientsValue": "25+",
+    "statsBottomClientsLabel": "satisfied clients"
   }
 }

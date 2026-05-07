@@ -259,9 +259,80 @@ body {
   background: #fff;
 }
 
-@media (min-width: 992px) {
-  .site-header {
-    top: 2.5rem;
+  .animate-from-right {
+    opacity: 0;
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  .animate-from-left {
+    opacity: 0;
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-from-top {
+    opacity: 0;
+    animation: slideInTop 0.8s ease-out forwards;
+  }
+
+  .animate-from-bottom {
+    opacity: 0;
+    animation: slideInBottom 0.8s ease-out forwards;
+  }
+
+  .animate-delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .animate-delay-150 {
+    animation-delay: 0.15s;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(80px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-80px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInTop {
+    from {
+      opacity: 0;
+      transform: translateY(-80px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInBottom {
+    from {
+      opacity: 0;
+      transform: translateY(80px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .site-main {
@@ -277,7 +348,6 @@ body {
   .site-header__mobile-panel {
     display: none;
   }
-}
 
 .home-anchor {
   height: 1px;

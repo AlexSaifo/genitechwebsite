@@ -19,6 +19,22 @@
     "heroSubtitle": "تقنية تثق بها",
     "heroDescription": "نؤمن بأن التكنولوجيا ليست مجرد أداة، بل هي وسيلة لتحقيق الإبداع والتميز. من خلال دمج العبقريّة التقنية مع الحلول المبتكرة، نساعد الشركات على تحقيق أهدافها الرقمية.",
     "heroDiscover": "اكتشف المزيد",
-    "heroContact": "تواصل معنا"
+    "heroContact": "تواصل معنا",
+    "statsPanelDownloadsValue": "10.000+",
+    "statsPanelDownloadsLabel": "تنزيل لتطبيقات عملائنا",
+    "statsPanelSupportValue": "7/24",
+    "statsPanelSupportLabel": "متواجدون لخدمتكم",
+    "statsPanelRatingValue": "4.9/5",
+    "statsPanelRatingLabel": "متوسط تقييم عملائنا",
+    "statsTopRetentionValue": "80%+",
+    "statsTopRetentionLabel": "من عملائنا يعودون للعمل معنا",
+    "statsTopVisitsValue": "10.000+",
+    "statsTopVisitsLabel": "زيارة لمواقع عملائنا",
+    "statsCenterExperienceValue": "4+",
+    "statsCenterExperienceLabel": "سنوات من الخبرة في المجال",
+    "statsBottomStabilityValue": "99%+",
+    "statsBottomStabilityLabel": "نسبة إستقرار مشاريعنا",
+    "statsBottomClientsValue": "25+",
+    "statsBottomClientsLabel": "عميل راضيا عن خدماتنا"
   }
 }
