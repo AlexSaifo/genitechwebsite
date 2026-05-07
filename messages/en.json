@@ -1,4 +1,18 @@
 {
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "blog": "Blog",
+    "cta": "Book Consultation",
+    "languageLabel": "Language",
+    "languageAr": "Arabic",
+    "languageEn": "English",
+    "mainNavLabel": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "logoAlt": "GeniTech logo"
+  },
   "Home": {
     "title": "Hello world!"
   }

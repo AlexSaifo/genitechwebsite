@@ -1,4 +1,18 @@
 {
+  "Navigation": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "services": "خدماتنا",
+    "blog": "المدونة",
+    "cta": "استشر الآن",
+    "languageLabel": "اللغة",
+    "languageAr": "العربية",
+    "languageEn": "English",
+    "mainNavLabel": "التنقل الرئيسي",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "logoAlt": "شعار جيني تك"
+  },
   "Home": {
     "title": "مرحبا بالعالم!"
   }

@@ -1,4 +1,4 @@
-import { NextIntlClientProvider } from "next-intl";
+// Root layout: keep basic html/body and fonts. Locale-aware provider is moved into the localized layout.
 import type { Metadata } from "next";
 import { Cairo, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -29,11 +29,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full antialiased`}
-    >
+    <html className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <main className="site-main">{children}</main>
       </body>
     </html>
   );
