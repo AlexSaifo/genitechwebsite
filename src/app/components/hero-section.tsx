@@ -28,28 +28,28 @@ export default function HeroSection() {
       id="home"
       className="relative overflow-hidden px-4 pt-6 md:px-6 lg:px-8"
     >
-      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 justify-items-center items-center gap-10 pb-3 lg:grid-cols-2 lg:justify-items-stretch lg:gap-8">
+      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 justify-items-center items-center gap-10 pb-3 lg:grid-cols-2 lg:justify-items-stretch lg:gap-8">
         <div
           className="relative order-2 mx-auto h-[calc(508px*0.52)]  max-w-[665] justify-self-center min-[420px]:h-[calc(508px*0.62)] md:h-[calc(508px*0.76)] lg:order-1 lg:h-[508px] lg:justify-self-auto"
           aria-hidden="true"
         >
-          <div className="absolute left-1/2 top-0 h-[508px] w-[800px] origin-top -translate-x-1/2 scale-[0.52] min-[420px]:scale-[0.62] md:scale-[0.76] lg:scale-100">
+          <div className="absolute left-1/2 top-0 h-[508px] w-[897px] origin-top -translate-x-1/2 scale-[0.52] min-[420px]:scale-[0.62] md:scale-[0.76] lg:scale-100">
             <div
               className={`absolute left-[147px] top-[26px] h-[422px] w-[194px] overflow-visible rounded-3xl ${cardTone}`}
             >
               <Image
                 src="/assets/images/hero/hero-side-icon.png"
-                alt=""
+                alt="hero side icon"
                 width={52}
                 height={68}
                 className="absolute bottom-[-30px] left-[160px] max-w-[none] w-[115px]"
               />
               <Image
                 src="/assets/images/hero/hero-character.png"
-                alt=""
-                width={348}
+                alt="hero character"
+                width={216}
                 height={623}
-                className="absolute bottom-0 left-1/2 h-auto w-[348px] max-w-[none] -translate-x-1/2"
+                className="absolute bottom-0 left-1/2 h-auto w-[216px] max-w-[none] -translate-x-1/2"
                 priority
               />
             </div>
@@ -59,7 +59,7 @@ export default function HeroSection() {
             >
               <Image
                 src="/assets/images/hero/hero-small-logo.png"
-                alt=""
+                alt="hero small logo"
                 width={102}
                 height={37}
                 className="absolute bottom-[-8px] left-[220px] h-auto w-[102px]"
@@ -81,7 +81,7 @@ export default function HeroSection() {
             >
               <Image
                 src="/assets/images/hero/hero-phone.png"
-                alt=""
+                alt="hero phone"
                 width={229}
                 height={163}
                 className={`absolute left-1/2 top-1/2 h-auto w-[229px] -translate-y-1/2 transition-all duration-700 ease-in-out ${
