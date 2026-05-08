@@ -225,7 +225,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative px-4 py-16 md:px-6 lg:px-8 lg:py-20"
+      className="relative px-4 py-14 md:px-6 lg:px-8 lg:py-20"
       dir={isArabic ? "rtl" : "ltr"}
     >
       <div className="mx-auto flex w-full max-w-310 flex-col items-center gap-12 lg:gap-16">

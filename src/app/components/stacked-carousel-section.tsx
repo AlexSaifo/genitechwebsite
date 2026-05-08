@@ -161,7 +161,7 @@ export default function StackedCarouselSection() {
   };
 
   return (
-    <section id="work" className="relative px-3 py-16 sm:px-4 md:px-6 lg:px-8 lg:py-20">
+    <section id="work" className="relative px-3 py-14 sm:px-4 md:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto w-full max-w-350">
         <div
           className="relative mx-auto h-[clamp(260px,52vw,574px)] w-full max-w-350 overflow-hidden rounded-[20px] sm:rounded-3xl lg:rounded-4xl"
