@@ -6,8 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 export default function HeroSection() {
-  const t = useTranslations("Home");
-  const tNav = useTranslations("Navigation");
+  const t = useTranslations();
   const locale = useLocale();
   const isArabic = locale === "ar";
   const [showPhone, setShowPhone] = useState(true);
@@ -87,7 +86,7 @@ export default function HeroSection() {
               />
               <Image
                 src="/genitech-icon.svg"
-                alt={tNav("logoAlt")}
+                  alt={t("Navigation.logoAlt")}
                 width={102}
                 height={37}
                 priority
@@ -130,15 +129,15 @@ export default function HeroSection() {
           <div className="flex w-full max-w-[778px] flex-col items-end gap-6">
             <div className="flex w-full flex-col items-end gap-4 lg:gap-6">
               <h1 className="m-0 w-full bg-[linear-gradient(89.18deg,#0ca5f0_15.53%,#ffffff_220.84%)] bg-clip-text text-[34px] font-black leading-[1.35] text-transparent min-[500px]:text-[46px] lg:text-[56px] lg:leading-[105px]">
-                {t("heroTitle")}
+                 {t("Home.heroTitle")}
               </h1>
               <h2 className="m-0 w-full text-[20px] font-bold leading-[1.6] text-white min-[500px]:text-[24px] lg:text-[28px] lg:leading-[52px]">
-                {t("heroSubtitle")}
+                 {t("Home.heroSubtitle")}
               </h2>
             </div>
 
             <p className="m-0 w-full max-w-[628px] text-[16px] leading-[1.8] text-white min-[500px]:text-[17px] lg:text-[18px] lg:leading-[34px]">
-              {t("heroDescription")}
+                {t("Home.heroDescription")}
             </p>
           </div>
 
@@ -147,7 +146,7 @@ export default function HeroSection() {
               href={`/${locale}#services`}
               className="inline-flex min-h-12 w-full min-w-[165px] items-center justify-center rounded-full bg-[#141b2b] px-6 py-2 text-[15px] font-semibold text-white transition-colors hover:bg-[#1a2336] min-[500px]:w-auto lg:w-[205px]"
             >
-              {t("heroDiscover")}
+                {t("Home.heroDiscover")}
             </Link>
 
             <Link
@@ -162,7 +161,7 @@ export default function HeroSection() {
                 backgroundClip: "padding-box, border-box",
               }}
             >
-              <span>{t("heroContact")}</span>
+                <span>{t("Home.heroContact")}</span>
               <span aria-hidden="true" className="text-base leading-none">
                 &#9742;
               </span>
