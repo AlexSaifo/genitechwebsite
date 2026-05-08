@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 type TeamMember = {
   image: string;
@@ -43,6 +44,7 @@ const members: TeamMember[] = [
 
 export default function TeamMembersSection() {
   const t = useTranslations("Home");
+  const [flipped, setFlipped] = useState<number | null>(null);
 
   return (
     <section id="team" className="relative px-4 py-14 md:px-6 lg:px-8 lg:py-20">
@@ -57,12 +59,18 @@ export default function TeamMembersSection() {
         </div>
 
         <div className="grid w-full grid-cols-1 justify-items-center gap-5 min-[560px]:grid-cols-2 min-[560px]:gap-6 lg:grid-cols-4 lg:gap-6">
-          {members.map((member) => (
+          {members.map((member, idx) => (
             <article
               key={member.image}
-              className="group relative h-105.75 w-full max-w-64.5 perspective-distant"
+              className={`group relative h-105.75 w-full max-w-64.5 perspective-distant ${flipped === idx ? "is-flipped" : ""}`}
+              onClick={() => setFlipped((f) => (f === idx ? null : idx))}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") setFlipped((f) => (f === idx ? null : idx));
+              }}
             >
-              <div className="relative h-full w-full rounded-3xl transition-transform duration-700 ease-out transform-3d group-hover:transform-[rotateY(180deg)]">
+              <div className={`relative h-full w-full rounded-3xl transition-transform duration-700 ease-out transform-3d ${flipped === idx ? "transform-[rotateY(180deg)]" : "group-hover:transform-[rotateY(180deg)]"}`}>
                 <div className="absolute inset-0 overflow-hidden rounded-3xl border border-white/16 bg-[linear-gradient(168.48deg,rgba(255,255,255,0.12)_-83.31%,rgba(255,255,255,0.06)_26.56%,rgba(255,255,255,0.07)_111.32%)] backface-hidden">
                   <Image
                     src={member.image}
