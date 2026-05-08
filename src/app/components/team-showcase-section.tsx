@@ -62,7 +62,7 @@ export default function TeamShowcaseSection() {
           <a
             href="#contact"
             className={`inline-flex h-12.5 w-51 items-center justify-center gap-2.5 rounded-3xl bg-[#086EA8] px-4 py-2 text-[18px] font-normal leading-8.5 text-white transition-colors duration-200 hover:bg-[#0a7bbd] ${
-              isArabic ? "self-end" : "self-start"
+              isArabic ? "self-start" : "self-start"
             }`}
           >
             <svg
