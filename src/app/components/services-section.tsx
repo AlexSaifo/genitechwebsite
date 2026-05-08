@@ -227,8 +227,8 @@ export default function ServicesSection() {
       className="relative px-4 py-16 md:px-6 lg:px-8 lg:py-20"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      <div className="mx-auto flex w-full max-w-[1240px] flex-col items-center gap-12 lg:gap-16">
-        <div className="relative flex w-full max-w-[460px] flex-col items-center gap-4 text-center">
+      <div className="mx-auto flex w-full max-w-310 flex-col items-center gap-12 lg:gap-16">
+        <div className="relative flex w-full max-w-115 flex-col items-center gap-4 text-center">
           <h2 className="m-0 w-full bg-[linear-gradient(89.18deg,#0CA5F0_15.53%,#FFFFFF_220.84%)] bg-clip-text text-[30px] font-black leading-[1.35] text-transparent min-[500px]:text-[34px] lg:text-[36px]">
             {t("servicesTitle")}
           </h2>
@@ -236,13 +236,13 @@ export default function ServicesSection() {
             {hasSelectablePhrase ? (
               <>
                 {subtitlePrefix}
-                <span className="relative inline-block rounded-[2px] border border-white/60 bg-[#16216F4A] px-[2px]">
+                <span className="relative inline-block rounded-xs border border-white/60 bg-[#16216F4A] px-0.5">
                   {renderedPhrase}
                   <img
                     src="/assets/svg/small cursor.svg"
                     alt=""
                     className={`pointer-events-none absolute h-5 w-5 rotate-[8deg] ${ // we nee to mirror it to other side in english 
-                      isArabic ? "-left-4 bottom-[-12px]" : "-right-4 bottom-[-12px] scale-x-[-1]"
+                      isArabic ? "-left-4 -bottom-3" : "-right-4 -bottom-3 scale-x-[-1]"
                     }`}
                     aria-hidden="true"
                   />
@@ -260,11 +260,11 @@ export default function ServicesSection() {
           {cards.map((card) => (
             <article
               key={card.id}
-              className="group relative h-[312px] w-full max-w-[392px] overflow-visible"
+              className="group relative h-78 w-full max-w-98 overflow-visible"
             >
-              <div className="pointer-events-none absolute inset-0 translate-x-[1px] translate-y-[1px] rounded-[24px] border border-dashed border-white/32 bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)] z-0" />
+              <div className="pointer-events-none absolute inset-0 translate-x-px translate-y-px rounded-3xl border border-dashed border-white/32 bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)] z-0" />
               <div
-                className={`absolute inset-0 z-10 rounded-[24px] bg-[#13192B] px-10 pb-10 pt-6 transition-transform duration-400 ease-out will-change-transform ${
+                className={`absolute inset-0 z-10 rounded-3xl bg-[#13192B] px-10 pb-10 pt-6 transition-transform duration-400 ease-out will-change-transform ${
                   isArabic
                     ? "origin-center group-hover:-translate-y-2.5 group-hover:rotate-[-9deg]"
                     : "origin-center group-hover:-translate-y-2.5 group-hover:rotate-[9deg]"

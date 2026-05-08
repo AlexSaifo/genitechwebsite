@@ -8,7 +8,6 @@ import { useLocale, useTranslations } from "next-intl";
 export default function HeroSection() {
   const t = useTranslations();
   const locale = useLocale();
-  const isArabic = locale === "ar";
   const [showPhone, setShowPhone] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -48,41 +47,41 @@ export default function HeroSection() {
       id="home"
       className={`${isVisible ? "animate-from-bottom animate-delay-100" : "opacity-0"} relative overflow-hidden px-4 pt-6 md:px-6 lg:px-8 lg:pb-20`}
     >
-      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 justify-items-center items-center gap-10 pb-3 lg:grid-cols-2 lg:justify-items-stretch lg:gap-8">
+      <div className="mx-auto grid w-full max-w-310 grid-cols-1 justify-items-center items-center gap-10 pb-3 lg:grid-cols-2 lg:justify-items-stretch lg:gap-8">
         <div
-          className="relative order-2 mx-auto h-[calc(508px*0.52)]  max-w-[665] justify-self-center min-[420px]:h-[calc(508px*0.62)] md:h-[calc(508px*0.76)] lg:order-1 lg:h-[508px] lg:justify-self-auto"
+          className="relative order-2 mx-auto h-[264.16px]  max-w-[665] justify-self-center min-[420px]:h-[314.96px] md:h-[386.08px] lg:order-1 lg:h-127 lg:justify-self-auto"
           aria-hidden="true"
         >
-          <div className="absolute left-1/2 top-0 h-[508px] w-[897px] origin-top -translate-x-1/2 scale-[0.52] min-[420px]:scale-[0.62] md:scale-[0.76] lg:scale-100">
+          <div className="absolute left-1/2 top-0 h-127 w-224.25 origin-top -translate-x-1/2 scale-[0.52] min-[420px]:scale-[0.62] md:scale-[0.76] lg:scale-100">
             <div
-              className={`absolute left-[147px] top-[26px] h-[422px] w-[194px] overflow-visible rounded-3xl ${cardTone}`}
+              className={`absolute left-36.75 top-6.5 h-105.5 w-48.5 overflow-visible rounded-3xl ${cardTone}`}
             >
               <Image
                 src="/assets/images/hero/hero-side-icon.png"
                 alt="hero side icon"
                 width={52}
                 height={68}
-                className="absolute bottom-[-30px] left-[160px] max-w-[none] w-[115px]"
+                className="absolute -bottom-7.5 left-40 max-w-none w-28.75"
               />
               <Image
                 src="/assets/images/hero/hero-character.png"
                 alt="hero character"
                 width={216}
                 height={623}
-                className="absolute bottom-0 left-1/2 h-auto w-[216px] max-w-[none] -translate-x-1/2"
+                className="absolute bottom-0 left-1/2 h-auto w-54 max-w-none -translate-x-1/2"
                 priority
               />
             </div>
 
             <div
-              className={`absolute left-[357px] top-[26px] flex h-[203px] w-[298px] flex-col items-center justify-center rounded-3xl ${cardTone}`}
+              className={`absolute left-89.25 top-6.5 flex h-50.75 w-74.5 flex-col items-center justify-center rounded-3xl ${cardTone}`}
             >
               <Image
                 src="/assets/images/hero/hero-small-logo.png"
                 alt="hero small logo"
                 width={102}
                 height={37}
-                className="absolute bottom-[-8px] left-[220px] h-auto w-[102px]"
+                className="absolute -bottom-2 left-55 h-auto w-25.5"
               />
               <Image
                 src="/genitech-icon.svg"
@@ -91,23 +90,23 @@ export default function HeroSection() {
                 height={37}
                 priority
               />
-              <p className="m-0 text-[30px] font-bold leading-[56px] text-white">
+              <p className="m-0 text-[30px] font-bold leading-14 text-white">
                 Tech you Trust
               </p>
             </div>
 
             <div
-              className={`absolute left-[357px] top-[247px] h-[203px] w-[298px] overflow-hidden rounded-3xl ${cardTone}`}
+              className={`absolute left-89.25 top-61.75 h-50.75 w-74.5 overflow-hidden rounded-3xl ${cardTone}`}
             >
               <Image
                 src="/assets/images/hero/hero-phone.png"
                 alt="hero phone"
                 width={229}
                 height={163}
-                className={`absolute left-1/2 top-1/2 h-auto w-[229px] -translate-y-1/2 transition-all duration-700 ease-in-out ${
+                className={`absolute left-1/2 top-1/2 h-auto w-57.25 -translate-y-1/2 transition-all duration-700 ease-in-out ${
                   showPhone
                     ? "-translate-x-1/2 opacity-100"
-                    : "-translate-x-[190px] opacity-0"
+                    : "-translate-x-47.5 opacity-0"
                 }`}
               />
               <Image
@@ -115,9 +114,9 @@ export default function HeroSection() {
                 alt=""
                 width={224}
                 height={123}
-                className={`absolute left-1/2 top-1/2 h-auto w-[224px] -translate-y-1/2 transition-all duration-700 ease-in-out ${
+                className={`absolute left-1/2 top-1/2 h-auto w-56 -translate-y-1/2 transition-all duration-700 ease-in-out ${
                   showPhone
-                    ? "translate-x-[190px] opacity-0"
+                    ? "translate-x-47.5 opacity-0"
                     : "-translate-x-1/2 opacity-100"
                 }`}
               />
@@ -126,17 +125,17 @@ export default function HeroSection() {
         </div>
 
         <div className="order-1 flex flex-col items-start gap-6 text-right lg:order-2 lg:items-end lg:gap-11">
-          <div className="flex w-full max-w-[778px] flex-col items-end gap-6">
+          <div className="flex w-full max-w-194.5 flex-col items-end gap-6">
             <div className="flex w-full flex-col items-end gap-4 lg:gap-6">
-              <h1 className="m-0 w-full bg-[linear-gradient(89.18deg,#0ca5f0_15.53%,#ffffff_220.84%)] bg-clip-text text-[34px] font-black leading-[1.35] text-transparent min-[500px]:text-[46px] lg:text-[56px] lg:leading-[105px]">
+              <h1 className="m-0 w-full bg-[linear-gradient(89.18deg,#0ca5f0_15.53%,#ffffff_220.84%)] bg-clip-text text-[34px] font-black leading-[1.35] text-transparent min-[500px]:text-[46px] lg:text-[56px] lg:leading-26.25">
                  {t("Home.heroTitle")}
               </h1>
-              <h2 className="m-0 w-full text-[20px] font-bold leading-[1.6] text-white min-[500px]:text-[24px] lg:text-[28px] lg:leading-[52px]">
+              <h2 className="m-0 w-full text-[20px] font-bold leading-[1.6] text-white min-[500px]:text-[24px] lg:text-[28px] lg:leading-13">
                  {t("Home.heroSubtitle")}
               </h2>
             </div>
 
-            <p className="m-0 w-full max-w-[628px] text-[16px] leading-[1.8] text-white min-[500px]:text-[17px] lg:text-[18px] lg:leading-[34px]">
+            <p className="m-0 w-full max-w-157 text-[16px] leading-[1.8] text-white min-[500px]:text-[17px] lg:text-[18px] lg:leading-8.5">
                 {t("Home.heroDescription")}
             </p>
           </div>
@@ -144,14 +143,14 @@ export default function HeroSection() {
           <div className="flex w-full flex-wrap justify-end gap-3 min-[500px]:gap-5 lg:w-auto lg:flex-nowrap">
             <Link
               href={`/${locale}#services`}
-              className="inline-flex min-h-12 w-full min-w-[165px] items-center justify-center rounded-full bg-[#141b2b] px-6 py-2 text-[15px] font-semibold text-white transition-colors hover:bg-[#1a2336] min-[500px]:w-auto lg:w-[205px]"
+              className="inline-flex min-h-12 w-full min-w-41.25 items-center justify-center rounded-full bg-[#141b2b] px-6 py-2 text-[15px] font-semibold text-white transition-colors hover:bg-[#1a2336] min-[500px]:w-auto lg:w-51.25"
             >
                 {t("Home.heroDiscover")}
             </Link>
 
             <Link
               href={`/${locale}#contact`}
-              className="inline-flex min-h-12 w-full min-w-[165px] items-center justify-center gap-2 rounded-full bg-[var(--background)] px-5 py-2 text-[15px] font-semibold text-white transition-opacity hover:opacity-90 min-[500px]:w-auto min-[500px]:px-6 lg:w-[205px]"
+              className="inline-flex min-h-12 w-full min-w-41.25 items-center justify-center gap-2 rounded-full bg-background px-5 py-2 text-[15px] font-semibold text-white transition-opacity hover:opacity-90 min-[500px]:w-auto min-[500px]:px-6 lg:w-51.25"
               style={{
                 border: "1px solid transparent",
                 borderRadius: "999px",
