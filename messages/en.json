@@ -43,6 +43,15 @@
     "servicesCardwebTitle": "Web Development",
     "servicesCardwebDescription": "Your website is your digital front. We build fast, responsive, modern websites that help you attract customers and grow revenue.",
     "servicesCardmobileTitle": "Mobile App Development",
-    "servicesCardmobileDescription": "We turn your ideas into high-performing mobile apps with elegant design and smooth experience to support your growth goals."
+    "servicesCardmobileDescription": "We turn your ideas into high-performing mobile apps with elegant design and smooth experience to support your growth goals.",
+    "teamTitle": "Built by Experts",
+    "teamSubtitle": "A specialized team building high-performance software solutions.",
+    "teamRoleDesign": "ui-ux",
+    "teamMember1": "Mohammad Mohammad",
+    "teamMember2": "Mohammad Mohammad",
+    "teamMember3": "Mohammad Mohammad",
+    "teamMember4": "Mohammad Mohammad",
+    "teamLogoAlt": "GeniTech logo",
+    "teamBackDescription": "We are a team of professionals working together to achieve our clients' success using the best technologies and solutions."
   }
 }

@@ -75,6 +75,7 @@ export default function StackedCarouselSection() {
   const roleByIndex = useMemo(() => {
     const front = current;
     const middle = (current + slides.length - 1) % slides.length;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const back = (current + slides.length - 2) % slides.length;
 
     return slides.map((_, index) => {
@@ -161,9 +162,9 @@ export default function StackedCarouselSection() {
 
   return (
     <section id="work" className="relative px-3 py-16 sm:px-4 md:px-6 lg:px-8 lg:py-20">
-      <div className="mx-auto w-full max-w-[1400px]">
+      <div className="mx-auto w-full max-w-350">
         <div
-          className="relative mx-auto h-[clamp(260px,52vw,574px)] w-full max-w-[1320px] overflow-hidden rounded-[20px] sm:rounded-[24px] lg:rounded-[32px]"
+          className="relative mx-auto h-[clamp(260px,52vw,574px)] w-full max-w-350 overflow-hidden rounded-[20px] sm:rounded-3xl lg:rounded-4xl"
           onPointerDown={onCardsPointerDown}
           onPointerMove={onCardsPointerMove}
           onPointerUp={onCardsPointerEnd}
@@ -191,7 +192,7 @@ export default function StackedCarouselSection() {
                       : "0 24px 48px rgba(0,0,0,0.16)",
                 }}
               >
-                <div className="relative w-full overflow-hidden rounded-[14px] sm:rounded-[18px] lg:rounded-[24px]" style={{ aspectRatio: `${FRAME_WIDTH} / ${FRAME_HEIGHT}` }}>
+                <div className="relative w-full overflow-hidden rounded-[14px] sm:rounded-[18px] lg:rounded-3xl" style={{ aspectRatio: `${FRAME_WIDTH} / ${FRAME_HEIGHT}` }}>
                   <Image
                     src={slide.src}
                     alt={slide.alt}
@@ -209,7 +210,7 @@ export default function StackedCarouselSection() {
           <div className="absolute right-2 top-1/2 hidden -translate-y-1/2 md:block">
             <div
               ref={trackRef}
-              className="relative h-[402px] w-1.5 cursor-pointer rounded-[20px] bg-[#3F4042]"
+              className="relative h-100.5 w-1.5 cursor-pointer rounded-[20px] bg-[#3F4042]"
               onPointerDown={onTrackPointerDown}
               onPointerMove={onTrackPointerMove}
               onPointerUp={onTrackPointerEnd}
@@ -217,7 +218,7 @@ export default function StackedCarouselSection() {
               style={{ touchAction: "none" }}
             >
               <span
-                className="absolute left-0 top-0 block h-[156px] w-full cursor-grab rounded-[20px] bg-[linear-gradient(179.98deg,#086EA8_0.02%,#A81E98_196.44%)] transition-transform duration-700 ease-out active:cursor-grabbing"
+                className="absolute left-0 top-0 block h-39 w-full cursor-grab rounded-[20px] bg-[linear-gradient(179.98deg,#086EA8_0.02%,#A81E98_196.44%)] transition-transform duration-700 ease-out active:cursor-grabbing"
                 style={{ transform: `translateY(${thumbOffset}px)` }}
                 aria-hidden="true"
               />
