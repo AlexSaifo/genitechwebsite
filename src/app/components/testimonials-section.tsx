@@ -37,12 +37,12 @@ function TestimonialCard({
   return (
     /* Fixed-height card wrapper */
     <div
-      className="relative w-full max-w-[372px] h-[304px] overflow-visible"
+      className="relative w-full max-w-full sm:max-w-93 h-[304px] sm:h-76 overflow-visible"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Dashed border layer behind the card */}
-      <div className="absolute inset-[1px] z-0 rounded-3xl border border-dashed border-white/[.32] bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)] pointer-events-none" />
+      <div className="absolute inset-px z-0 rounded-3xl border border-dashed border-white/32 bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)] pointer-events-none" />
 
       {/* Solid card rotates on hover */}
       <div
@@ -54,11 +54,11 @@ function TestimonialCard({
           transition:
             "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background-color 0.35s ease",
         }}
-        className="absolute inset-0 z-10 flex h-full flex-col gap-4 rounded-3xl px-8 pb-8 pt-6"
+        className="absolute inset-0 z-10 flex h-full flex-col gap-4 rounded-3xl px-6 pb-6 pt-5 sm:px-8 sm:pb-8 sm:pt-6"
       >
         {/* 5 gold stars */}
         <div
-          className={`flex flex-row gap-1.5 justify-start`}
+          className={`flex flex-row gap-1 justify-start`}
         >
           {[...Array(5)].map((_, i) => (
             <StarIcon key={i} />
@@ -67,24 +67,24 @@ function TestimonialCard({
 
         {/* Review text */}
         <p
-          className={`m-0 w-full text-[16px] leading-[30px] text-white ${isArabic ? "text-right" : "text-left"}`}
+          className={`m-0 w-full text-[15px] sm:text-[16px] leading-[26px] sm:leading-7.5 text-white ${isArabic ? "text-right" : "text-left"}`}
         >
           {review}
         </p>
 
         {/* Author row */}
         <div
-          className={`mt-auto flex w-full items-center gap-2.5 justify-start `}
+          className={`mt-auto flex w-full items-center gap-2.5 justify-start`}
         >
           <span
-            className={`text-[16px] font-bold leading-[30px] text-white ${
+            className={`text-[15px] sm:text-[16px] font-bold leading-[26px] sm:leading-7.5 text-white ${
               isArabic ? "order-1" : "order-2"
             }`}
           >
             {name}
           </span>
           <div
-            className={`relative h-[57px] w-[57px] shrink-0 overflow-hidden rounded-full border border-white/[.66] shadow-[-2px_6px_12px_rgba(43,60,184,0.24)] `}
+            className={`relative h-12 w-12 sm:h-14 sm:w-14 shrink-0 overflow-hidden rounded-full border border-white/66 shadow-[-2px_6px_12px_rgba(43,60,184,0.24)]`}
           >
             <Image
               src={avatar}
@@ -153,16 +153,16 @@ export default function TestimonialsSection() {
       dir={isArabic ? "rtl" : "ltr"}
       className={`${isVisible ? "animate-from-bottom animate-delay-100" : "opacity-0"} relative px-4 py-16 md:px-6 lg:px-8 lg:py-20`}
     >
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-full md:max-w-310">
         {/* Section title */}
-        <h2 className="m-0 mb-16 w-full bg-[linear-gradient(89.18deg,#0CA5F0_15.53%,#FFFFFF_220.84%)] bg-clip-text text-center text-[36px] font-black leading-[68px] text-transparent">
+        <h2 className="m-0 mb-16 w-full bg-[linear-gradient(89.18deg,#0CA5F0_15.53%,#FFFFFF_220.84%)] bg-clip-text text-center text-[30px] sm:text-[36px] font-black leading-[44px] sm:leading-[68px] text-transparent">
           {t("Home.testimonialsTitle")}
         </h2>
 
         {/* Cards grid — 1 col on mobile, 2 on sm, 3 on lg */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 xl:gap-12">
           {TESTIMONIALS.map(({ avatar, reviewKey, nameKey }) => (
-            <div key={nameKey} className="flex justify-center">
+            <div key={nameKey} className="flex justify-center px-3 sm:px-0">
               <TestimonialCard
                 review={t(reviewKey)}
                 name={t(nameKey)}
