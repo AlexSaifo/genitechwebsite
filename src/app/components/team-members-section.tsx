@@ -58,11 +58,11 @@ export default function TeamMembersSection() {
           </p>
         </div>
 
-        <div className="grid w-full grid-cols-1 justify-items-center gap-5 min-[560px]:grid-cols-2 min-[560px]:gap-6 lg:grid-cols-4 lg:gap-6">
+        <div className="grid w-full grid-cols-1 justify-items-center gap-8 min-[560px]:grid-cols-2 min-[560px]:gap-10 lg:grid-cols-4 lg:gap-12 xl:gap-16">
           {members.map((member, idx) => (
             <article
               key={member.image}
-              className={`group relative h-105.75 w-full max-w-64.5 perspective-distant ${flipped === idx ? "is-flipped" : ""}`}
+              className={`group relative h-105.75 w-full max-w-64.5 perspective-distant ${flipped === idx ? "is-flipped" : ""} overflow-visible px-4 sm:px-0`}
               onClick={() => setFlipped((f) => (f === idx ? null : idx))}
               role="button"
               tabIndex={0}

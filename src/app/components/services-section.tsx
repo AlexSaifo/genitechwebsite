@@ -261,7 +261,7 @@ export default function ServicesSection() {
 
         </div>
 
-        <div className="grid w-full grid-cols-1 justify-items-center gap-6 lg:grid-cols-3 lg:gap-8">
+        <div className="grid w-full grid-cols-1 justify-items-center gap-10 lg:grid-cols-3 lg:gap-8">
           {cards.map((card) => (
             <article
               key={card.id}
