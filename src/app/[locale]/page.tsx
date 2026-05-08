@@ -4,6 +4,7 @@ import StackedCarouselSection from "../components/stacked-carousel-section";
 import StatisticsSection from "../components/statistics-section";
 import TeamMembersSection from "../components/team-members-section";
 import TeamShowcaseSection from "../components/team-showcase-section";
+import TestimonialsSection from "../components/testimonials-section";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <StackedCarouselSection />
       <TeamMembersSection />
       <TeamShowcaseSection />
+      <TestimonialsSection />
       <section id="blog" aria-hidden="true" className="home-anchor" />
       <section id="contact" aria-hidden="true" className="home-anchor" />
     </>
