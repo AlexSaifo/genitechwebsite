@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import GradientBorderLink from "./gradient-border-link";
 import { useLocale, useTranslations } from "next-intl";
 
 export default function HeroSection() {
@@ -161,10 +162,7 @@ export default function HeroSection() {
           <div
             className={`flex w-full flex-wrap gap-3 min-[500px]:gap-5 lg:w-full lg:flex-nowrap ${isArabic ? "justify-start" : "justify-start"}`}
           >
-            <Link
-              href={`/${locale}#contact`}
-              className="inline-flex min-h-12 w-full min-w-45 items-center justify-center gap-2 rounded-full border border-transparent bg-[linear-gradient(var(--background),var(--background))_padding-box,_linear-gradient(269.48deg,_#1BC4F9_3.26%,_#5A6BE0_65.08%,_#DC41CA_135.82%)_border-box] bg-clip-padding px-6 py-2 text-[15px] font-semibold text-white transition-all duration-300 ease-out min-[500px]:w-auto min-[500px]:px-7 lg:w-50 hover:bg-white hover:text-[#141B2A] hover:border-[#141B2A] lg:hover:w-98.75"
-            >
+            <GradientBorderLink href={`/${locale}#contact`}>
               <svg
                 width="24"
                 height="24"
@@ -188,7 +186,7 @@ export default function HeroSection() {
                 />
               </svg>
               <span>{t("Home.heroContact")}</span>
-            </Link>
+            </GradientBorderLink>
 
             <Link
               href={`/${locale}#services`}
