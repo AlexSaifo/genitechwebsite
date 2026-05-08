@@ -35,14 +35,14 @@ function TestimonialCard({
   const [hovered, setHovered] = useState(false);
 
   return (
-    /* Padding so rotated card doesn't clip its container */
+    /* Fixed-height card wrapper */
     <div
-      className="relative w-full max-w-[392px] px-4 py-6"
+      className="relative w-full max-w-[372px] h-[304px] overflow-visible"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Dashed border stays flat — does NOT rotate */}
-      <div className="pointer-events-none absolute inset-x-4 inset-y-6 rounded-3xl border border-dashed border-white/[.32] bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)]" />
+      {/* Dashed border layer behind the card */}
+      <div className="absolute inset-[1px] z-0 rounded-3xl border border-dashed border-white/[.32] bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)] pointer-events-none" />
 
       {/* Solid card rotates on hover */}
       <div
@@ -50,10 +50,11 @@ function TestimonialCard({
         style={{
           backgroundColor: hovered ? "#086EA8" : "#13192B",
           transform: hovered ? "rotate(4.42deg)" : "rotate(0deg)",
+          transformOrigin: "top right",
           transition:
             "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background-color 0.35s ease",
         }}
-        className="relative flex min-h-[312px] flex-col gap-4 rounded-3xl px-10 pb-10 pt-6"
+        className="absolute inset-0 z-10 flex h-full flex-col gap-4 rounded-3xl px-8 pb-8 pt-6"
       >
         {/* 5 gold stars */}
         <div
