@@ -62,9 +62,7 @@ export default function HeroSection() {
           }`}
           aria-hidden="true"
         >
-          <div
-            className="absolute left-1/2 top-0 h-127 w-224.25 origin-top -translate-x-1/2 scale-[0.52] min-[420px]:scale-[0.62] md:scale-[0.76] lg:scale-100"
-          >
+          <div className="absolute left-1/2 top-0 h-127 w-224.25 origin-top -translate-x-1/2 scale-[0.52] min-[420px]:scale-[0.62] md:scale-[0.76] lg:scale-100">
             <div
               className={`absolute left-36.75 top-6.5 h-105.5 w-48.5 overflow-visible rounded-3xl ${cardTone}`}
             >
