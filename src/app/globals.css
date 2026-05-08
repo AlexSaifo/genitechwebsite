@@ -339,14 +339,16 @@ body {
     padding-top: 8.2rem;
   }
 
-  .site-header__controls,
-  .site-header__nav {
-    display: inline-flex;
-  }
+  @media (min-width: 1024px) {
+    .site-header__controls,
+    .site-header__nav {
+      display: inline-flex;
+    }
 
-  .site-header__menu-button,
-  .site-header__mobile-panel {
-    display: none;
+    .site-header__menu-button,
+    .site-header__mobile-panel {
+      display: none;
+    }
   }
 
 .home-anchor {
