@@ -5,28 +5,20 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 type Slide = {
   src: string;
-  width: number;
-  height: number;
   alt: string;
 };
 
 const slides: Slide[] = [
   {
     src: "/assets/images/stepper-images/step1.png",
-    width: 1240,
-    height: 484,
     alt: "Mobile app showcase slide 1",
   },
   {
     src: "/assets/images/stepper-images/step2.png",
-    width: 1281,
-    height: 494,
     alt: "Mobile app showcase slide 2",
   },
   {
     src: "/assets/images/stepper-images/step3.png",
-    width: 1281,
-    height: 494,
     alt: "Mobile app showcase slide 3",
   },
 ];
@@ -34,6 +26,8 @@ const slides: Slide[] = [
 const CYCLE_MS = 3800;
 const TRACK_HEIGHT = 402;
 const THUMB_HEIGHT = 156;
+const FRAME_WIDTH = 1240;
+const FRAME_HEIGHT = 484;
 
 type SlotStyle = {
   offsetY: number;
@@ -166,10 +160,10 @@ export default function StackedCarouselSection() {
   };
 
   return (
-    <section id="work" className="relative px-4 py-16 md:px-6 lg:px-8 lg:py-20">
+    <section id="work" className="relative px-3 py-16 sm:px-4 md:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto w-full max-w-[1400px]">
         <div
-          className="relative mx-auto h-[574px] w-full max-w-[1320px] overflow-hidden rounded-[32px]"
+          className="relative mx-auto h-[clamp(260px,52vw,574px)] w-full max-w-[1320px] overflow-hidden rounded-[20px] sm:rounded-[24px] lg:rounded-[32px]"
           onPointerDown={onCardsPointerDown}
           onPointerMove={onCardsPointerMove}
           onPointerUp={onCardsPointerEnd}
@@ -186,7 +180,7 @@ export default function StackedCarouselSection() {
                 key={slide.src}
                 className="absolute left-1/2 top-1/2 cursor-grab select-none transition-all duration-700 ease-out active:cursor-grabbing"
                 style={{
-                  width: `${slide.width}px`,
+                  width: `min(${FRAME_WIDTH}px, calc(100% - 16px))`,
                   maxWidth: "100%",
                   opacity: slot.opacity,
                   zIndex: slot.zIndex,
@@ -197,14 +191,17 @@ export default function StackedCarouselSection() {
                       : "0 24px 48px rgba(0,0,0,0.16)",
                 }}
               >
-                <Image
-                  src={slide.src}
-                  alt={slide.alt}
-                  width={slide.width}
-                  height={slide.height}
-                  className="h-auto w-full rounded-[28px]"
-                  priority={index === current}
-                />
+                <div className="relative w-full overflow-hidden rounded-[14px] sm:rounded-[18px] lg:rounded-[24px]" style={{ aspectRatio: `${FRAME_WIDTH} / ${FRAME_HEIGHT}` }}>
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    sizes="(max-width: 640px) 96vw, (max-width: 1024px) 92vw, 1240px"
+                    className="object-cover"
+                    priority={index === current}
+                    draggable={false}
+                  />
+                </div>
               </div>
             );
           })}
