@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
 
 type TeamMember = {
   image: string;
@@ -44,7 +43,6 @@ const members: TeamMember[] = [
 
 export default function TeamMembersSection() {
   const t = useTranslations("Home");
-  const [flipped, setFlipped] = useState<number | null>(null);
 
   return (
     <section id="team" className="relative px-4 py-14 md:px-6 lg:px-8 lg:py-20">
@@ -62,15 +60,10 @@ export default function TeamMembersSection() {
           {members.map((member, idx) => (
             <article
               key={member.image}
-              className={`group relative h-105.75 w-full max-w-64.5 perspective-distant ${flipped === idx ? "is-flipped" : ""} overflow-visible px-4 sm:px-0`}
-              onClick={() => setFlipped((f) => (f === idx ? null : idx))}
-              role="button"
               tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") setFlipped((f) => (f === idx ? null : idx));
-              }}
+              className="group relative h-105.75 w-full max-w-64.5 perspective-distant overflow-visible focus:outline-none"
             >
-              <div className={`relative h-full w-full rounded-3xl transition-transform duration-700 ease-out transform-3d ${flipped === idx ? "transform-[rotateY(180deg)]" : "group-hover:transform-[rotateY(180deg)]"}`}>
+              <div className="relative h-full w-full rounded-3xl transition-transform duration-700 ease-out transform-3d group-hover:transform-[rotateY(180deg)] group-focus:transform-[rotateY(180deg)]">
                 <div className="absolute inset-0 overflow-hidden rounded-3xl border border-white/16 bg-[linear-gradient(168.48deg,rgba(255,255,255,0.12)_-83.31%,rgba(255,255,255,0.06)_26.56%,rgba(255,255,255,0.07)_111.32%)] backface-hidden">
                   <Image
                     src={member.image}

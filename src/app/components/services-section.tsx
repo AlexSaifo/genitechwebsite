@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { useState } from "react";
 
 type ServiceCard = {
   id: string;
@@ -13,7 +12,6 @@ export default function ServicesSection() {
   const t = useTranslations("Home");
   const locale = useLocale();
   const isArabic = locale === "ar";
-  const [flipped, setFlipped] = useState<string | null>(null);
   const servicesSubtitle = t("servicesSubtitle");
   const selectedPhraseByLocale: Record<string, string> = {
     ar: "حلولًا رقمية تُحدث الفرق",
@@ -265,24 +263,15 @@ export default function ServicesSection() {
           {cards.map((card) => (
             <article
               key={card.id}
-              className="group relative h-78 w-full max-w-98 overflow-visible cursor-pointer"
-              onClick={() => setFlipped((f) => (f === card.id ? null : card.id))}
-              role="button"
               tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") setFlipped((f) => (f === card.id ? null : card.id));
-              }}
+              className="group relative h-78 w-full max-w-98 overflow-visible focus:outline-none"
             >
               <div className="pointer-events-none absolute inset-0 translate-x-px translate-y-px rounded-3xl border border-dashed border-white/32 bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)] z-0" />
               <div
-                className={`absolute inset-0 z-10 rounded-3xl bg-[#13192B] px-10 pb-10 pt-6 transition-transform duration-400 ease-out will-change-transform ${
+                className={`absolute inset-0 z-10 rounded-3xl bg-[#13192B] px-10 pb-10 pt-6 transition-transform duration-400 ease-out will-change-transform origin-center ${
                   isArabic
-                    ? flipped === card.id
-                      ? "origin-center -translate-y-2.5 rotate-[-9deg]"
-                      : "origin-center group-hover:-translate-y-2.5 group-hover:rotate-[-9deg]"
-                    : flipped === card.id
-                    ? "origin-center -translate-y-2.5 rotate-[9deg]"
-                    : "origin-center group-hover:-translate-y-2.5 group-hover:rotate-[9deg]"
+                    ? "group-hover:-translate-y-2.5 group-hover:rotate-[-9deg] group-focus:-translate-y-2.5 group-focus:rotate-[-9deg]"
+                    : "group-hover:-translate-y-2.5 group-hover:rotate-[9deg] group-focus:-translate-y-2.5 group-focus:rotate-[9deg]"
                 }`}
               >
                 <div
