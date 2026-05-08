@@ -37,7 +37,7 @@ function TestimonialCard({
   return (
     /* Fixed-height card wrapper */
     <div
-      className="relative w-full max-w-full sm:max-w-93 h-[304px] sm:h-76 overflow-visible"
+      className="relative w-full max-w-full sm:max-w-93 h-76 sm:h-76 overflow-visible"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -67,7 +67,7 @@ function TestimonialCard({
 
         {/* Review text */}
         <p
-          className={`m-0 w-full text-[15px] sm:text-[16px] leading-[26px] sm:leading-7.5 text-white ${isArabic ? "text-right" : "text-left"}`}
+          className={`m-0 w-full text-[15px] sm:text-[16px] leading-6.5 sm:leading-7.5 text-white ${isArabic ? "text-right" : "text-left"}`}
         >
           {review}
         </p>
@@ -77,7 +77,7 @@ function TestimonialCard({
           className={`mt-auto flex w-full items-center gap-2.5 justify-start`}
         >
           <span
-            className={`text-[15px] sm:text-[16px] font-bold leading-[26px] sm:leading-7.5 text-white ${
+            className={`text-[15px] sm:text-[16px] font-bold leading-6.5 sm:leading-7.5 text-white ${
               isArabic ? "order-1" : "order-2"
             }`}
           >
@@ -155,7 +155,7 @@ export default function TestimonialsSection() {
     >
       <div className="mx-auto max-w-full md:max-w-310">
         {/* Section title */}
-        <h2 className="m-0 mb-16 w-full bg-[linear-gradient(89.18deg,#0CA5F0_15.53%,#FFFFFF_220.84%)] bg-clip-text text-center text-[30px] sm:text-[36px] font-black leading-[44px] sm:leading-[68px] text-transparent">
+        <h2 className="m-0 mb-16 w-full bg-[linear-gradient(89.18deg,#0CA5F0_15.53%,#FFFFFF_220.84%)] bg-clip-text text-center text-[30px] sm:text-[36px] font-black leading-11 sm:leading-17 text-transparent">
           {t("Home.testimonialsTitle")}
         </h2>
 
