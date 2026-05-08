@@ -3,6 +3,7 @@ import ServicesSection from "../components/services-section";
 import StackedCarouselSection from "../components/stacked-carousel-section";
 import StatisticsSection from "../components/statistics-section";
 import TeamMembersSection from "../components/team-members-section";
+import TeamShowcaseSection from "../components/team-showcase-section";
 
 export default function HomePage() {
   return (
@@ -12,7 +13,7 @@ export default function HomePage() {
       <ServicesSection />
       <StackedCarouselSection />
       <TeamMembersSection />
-      <section id="about" aria-hidden="true" className="home-anchor" />
+      <TeamShowcaseSection />
       <section id="blog" aria-hidden="true" className="home-anchor" />
       <section id="contact" aria-hidden="true" className="home-anchor" />
     </>

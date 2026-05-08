@@ -52,6 +52,11 @@
     "teamMember3": "Mohammad Mohammad",
     "teamMember4": "Mohammad Mohammad",
     "teamLogoAlt": "GeniTech logo",
-    "teamBackDescription": "We are a team of professionals working together to achieve our clients' success using the best technologies and solutions."
+    "teamBackDescription": "We are a team of professionals working together to achieve our clients' success using the best technologies and solutions.",
+    "teamShowcaseTitleLine1": "GeniTech Team,",
+    "teamShowcaseTitleLine2": "The Driving Force Behind Every Success",
+    "teamShowcaseDescription": "We are a team of professionals working together to ensure our clients' success using the best technologies and solutions. Committed to delivering top quality service, our 24/7 support is always available.",
+    "teamShowcaseButton": "Contact Us",
+    "teamShowcaseImageAlt": "GeniTech team and digital services"
   }
 }
