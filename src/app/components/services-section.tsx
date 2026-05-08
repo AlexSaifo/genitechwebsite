@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 
 type ServiceCard = {
@@ -238,10 +239,12 @@ export default function ServicesSection() {
                 {subtitlePrefix}
                 <span className="relative inline-block rounded-xs border border-white/60 bg-[#16216F4A] px-0.5">
                   {renderedPhrase}
-                  <img
+                  <Image
                     src="/assets/svg/small cursor.svg"
                     alt=""
-                    className={`pointer-events-none absolute h-5 w-5 rotate-[8deg] ${ // we nee to mirror it to other side in english 
+                    width={20}
+                    height={20}
+                    className={`pointer-events-none absolute h-5 w-5 rotate-[8deg] ${
                       isArabic ? "-left-4 -bottom-3" : "-right-4 -bottom-3 scale-x-[-1]"
                     }`}
                     aria-hidden="true"
