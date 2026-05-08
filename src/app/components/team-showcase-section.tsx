@@ -43,9 +43,7 @@ export default function TeamShowcaseSection() {
       dir={isArabic ? "rtl" : "ltr"}
     >
       <div
-        className={`mx-auto flex w-full max-w-310 flex-col items-center gap-10 lg:items-center lg:gap-10 ${
-          isArabic ? "lg:flex-row" : "lg:flex-row-reverse"
-        }`}
+        className="mx-auto flex w-full max-w-310 flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-10"
       >
         <div
           className={`flex w-full max-w-124.5 flex-col gap-6 transition-all duration-700 ease-out lg:gap-6 ${
@@ -63,7 +61,9 @@ export default function TeamShowcaseSection() {
 
           <a
             href="#contact"
-            className="inline-flex h-12.5 w-51 items-center justify-center gap-2.5 rounded-3xl bg-[#086EA8] px-4 py-2 text-[18px] font-normal leading-8.5 text-white transition-colors duration-200 hover:bg-[#0a7bbd] self-start"
+            className={`inline-flex h-12.5 w-51 items-center justify-center gap-2.5 rounded-3xl bg-[#086EA8] px-4 py-2 text-[18px] font-normal leading-8.5 text-white transition-colors duration-200 hover:bg-[#0a7bbd] ${
+              isArabic ? "self-end" : "self-start"
+            }`}
           >
             <svg
               width="24"
@@ -107,6 +107,7 @@ export default function TeamShowcaseSection() {
               fill
               sizes="(max-width: 1024px) 100vw, 717px"
               className="object-contain"
+              style={{ transform: !isArabic ? "scaleX(-1)" : undefined }}
               draggable={false}
             />
           </div>
