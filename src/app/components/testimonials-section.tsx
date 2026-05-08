@@ -26,7 +26,12 @@ interface TestimonialCardProps {
   isArabic: boolean;
 }
 
-function TestimonialCard({ review, name, avatar, isArabic }: TestimonialCardProps) {
+function TestimonialCard({
+  review,
+  name,
+  avatar,
+  isArabic,
+}: TestimonialCardProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -51,23 +56,35 @@ function TestimonialCard({ review, name, avatar, isArabic }: TestimonialCardProp
         className="relative flex min-h-[312px] flex-col gap-4 rounded-3xl px-10 pb-10 pt-6"
       >
         {/* 5 gold stars */}
-        <div className={`flex flex-row gap-1.5 ${isArabic ? "justify-end" : "justify-start"}`}>
+        <div
+          className={`flex flex-row gap-1.5 justify-start`}
+        >
           {[...Array(5)].map((_, i) => (
             <StarIcon key={i} />
           ))}
         </div>
 
         {/* Review text */}
-        <p className={`m-0 w-full text-[16px] leading-[30px] text-white ${isArabic ? "text-right" : "text-left"}`}>
+        <p
+          className={`m-0 w-full text-[16px] leading-[30px] text-white ${isArabic ? "text-right" : "text-left"}`}
+        >
           {review}
         </p>
 
         {/* Author row */}
-        <div className={`mt-auto flex w-full flex-row items-center gap-2.5 ${isArabic ? "justify-end" : "flex-row-reverse justify-end"}`}>
-          <span className="text-[16px] font-bold leading-[30px] text-white">
+        <div
+          className={`mt-auto flex w-full items-center gap-2.5 justify-start `}
+        >
+          <span
+            className={`text-[16px] font-bold leading-[30px] text-white ${
+              isArabic ? "order-1" : "order-2"
+            }`}
+          >
             {name}
           </span>
-          <div className="relative h-[57px] w-[57px] shrink-0 overflow-hidden rounded-full border border-white/[.66] shadow-[-2px_6px_12px_rgba(43,60,184,0.24)]">
+          <div
+            className={`relative h-[57px] w-[57px] shrink-0 overflow-hidden rounded-full border border-white/[.66] shadow-[-2px_6px_12px_rgba(43,60,184,0.24)] `}
+          >
             <Image
               src={avatar}
               alt={name}
