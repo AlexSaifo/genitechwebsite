@@ -35,6 +35,14 @@
     "statsBottomStabilityValue": "99%+",
     "statsBottomStabilityLabel": "project stability rate",
     "statsBottomClientsValue": "25+",
-    "statsBottomClientsLabel": "satisfied clients"
+    "statsBottomClientsLabel": "satisfied clients",
+    "servicesTitle": "More than just a service...",
+    "servicesSubtitle": "We craft digital solutions that truly make a difference.",
+    "servicesCardbrandingTitle": "Branding & UI/UX Design",
+    "servicesCardbrandingDescription": "We design a visual identity that reflects your brand with a professional touch to build trust and attract attention.",
+    "servicesCardwebTitle": "Web Development",
+    "servicesCardwebDescription": "Your website is your digital front. We build fast, responsive, modern websites that help you attract customers and grow revenue.",
+    "servicesCardmobileTitle": "Mobile App Development",
+    "servicesCardmobileDescription": "We turn your ideas into high-performing mobile apps with elegant design and smooth experience to support your growth goals."
   }
 }

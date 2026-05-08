@@ -35,6 +35,14 @@
     "statsBottomStabilityValue": "99%+",
     "statsBottomStabilityLabel": "نسبة إستقرار مشاريعنا",
     "statsBottomClientsValue": "25+",
-    "statsBottomClientsLabel": "عميل راضيا عن خدماتنا"
+    "statsBottomClientsLabel": "عميل راضيا عن خدماتنا",
+    "servicesTitle": "أكثر من مجرد خدمة...",
+    "servicesSubtitle": "نحن نبتكر حلولًا رقمية تُحدث الفرق مع العديد من الخدمات!",
+    "servicesCardbrandingTitle": "تصميم الشعارات والهويات البصرية UI/UX",
+    "servicesCardbrandingDescription": "نصمم لك هوية بصرية تعكس علامتك التجارية بلمسة احترافية، لتعزز ثقة العملاء وتجذب الانتباه.",
+    "servicesCardwebTitle": "تطوير المواقع الإلكترونية",
+    "servicesCardwebDescription": "موقعك هو واجهتك الرقمية، ونحن نصمّم ونطوّر مواقع احترافية بأحدث التقنيات لتكون متجاوبة وسريعة، مما يساعدك على جذب العملاء وزيادة الأرباح.",
+    "servicesCardmobileTitle": "تطوير تطبيقات الموبايل",
+    "servicesCardmobileDescription": "نحوّل أفكارك إلى تطبيقات ناجحة بتصميم أنيق وأداء سريع. سواء كنت ترغب في زيادة المبيعات أو تحسين تجربة العملاء، نقدم لك الحل الأمثل."
   }
 }
