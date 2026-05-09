@@ -20,7 +20,6 @@ export default function HomePage() {
       <TestimonialsSection />
       <PartnersSection />
       <BlogSection />
-      <section id="contact" aria-hidden="true" className="home-anchor" />
     </>
   );
 }

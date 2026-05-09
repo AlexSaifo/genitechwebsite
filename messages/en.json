@@ -73,5 +73,28 @@
     "blogPost2Title": "Best UX Design Practices in Mobile Apps ...",
     "blogPost3Title": "Best UX Design Practices in Mobile Apps ...",
     "blogPostImageAlt": "Blog post image"
+  },
+  "Footer": {
+    "logoAlt": "GeniTech logo",
+    "ourLinks": "Our Links",
+    "ourServices": "Our Services",
+    "followUs": "Follow us:",
+    "contactTitle": "Contact Us",
+    "description": "We believe technology is not just a set of tools, but a way to make a real impact. Our mission is to help you stand out and grow in a crowded market, and to be more than just a service provider - a creative partner blending art and technology to deliver something exceptional.",
+    "copyright": "©2025 GeniTech, All Rights Reserved",
+    "links": {
+      "home": "Home",
+      "about": "About",
+      "blog": "Blog",
+      "contact": "Contact Us",
+      "privacy": "Privacy & Policy"
+    },
+    "services": {
+      "mobileApps": "Mobile App Development",
+      "webDevelopment": "Web Development",
+      "desktopApps": "Desktop App Development",
+      "branding": "Logo & Brand Identity Design",
+      "uiDesign": "UI Design"
+    }
   }
 }

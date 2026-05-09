@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import GlobalFooter from "../components/global-footer";
 import GlobalHeader from "../components/global-header";
 import "../globals.css";
 
@@ -29,6 +30,7 @@ export default async function LocaleLayout({
     <NextIntlClientProvider locale={locale} messages={messages}>
       <GlobalHeader />
       {children}
+      <GlobalFooter />
     </NextIntlClientProvider>
   );
 }
