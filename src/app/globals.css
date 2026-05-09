@@ -141,23 +141,23 @@ body {
 
 @keyframes sectionBridgeOrbit360 {
   0% {
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
     opacity: 0.68;
   }
   25% {
-    transform: translate3d(36px, -24px, 0) rotate(90deg) scale(1.08);
+    transform: translate3d(calc(50vw + 77px), -120px, 0) scale(1.08);
     opacity: 0.78;
   }
   50% {
-    transform: translate3d(72px, 0, 0) rotate(180deg) scale(0.82);
+    transform: translate3d(calc(100vw + 154px), 0, 0) scale(0.82);
     opacity: 0.52;
   }
   75% {
-    transform: translate3d(36px, 24px, 0) rotate(270deg) scale(1.08);
+    transform: translate3d(calc(50vw + 77px), 120px, 0) scale(1.08);
     opacity: 0.78;
   }
   100% {
-    transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
     opacity: 0.68;
   }
 }
@@ -172,7 +172,6 @@ body {
   .section-bridge-effects__left-orbit {
     left: -110px;
     top: -80px;
-    transform: scale(0.82);
   }
 }
 
