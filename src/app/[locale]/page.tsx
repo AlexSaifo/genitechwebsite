@@ -1,4 +1,5 @@
 import HeroSection from "../components/hero-section";
+import PartnersSection from "../components/partners-section";
 import ServicesSection from "../components/services-section";
 import StackedCarouselSection from "../components/stacked-carousel-section";
 import StatisticsSection from "../components/statistics-section";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <TeamMembersSection />
       <TeamShowcaseSection />
       <TestimonialsSection />
+      <PartnersSection />
       <section id="blog" aria-hidden="true" className="home-anchor" />
       <section id="contact" aria-hidden="true" className="home-anchor" />
     </>
