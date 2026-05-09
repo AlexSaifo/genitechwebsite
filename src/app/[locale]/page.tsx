@@ -20,8 +20,18 @@ export default function HomePage() {
       </div>
       <StatisticsSection />
       <ServicesSection />
+      <div aria-hidden="true" className="section-bridge-effects section-bridge-effects--left-only">
+        <div className="section-bridge-effects__left-orbit">
+          <div className="section-bridge-effects__left-orbit-blob" />
+        </div>
+      </div>
       <StackedCarouselSection />
       <TeamMembersSection />
+      <div aria-hidden="true" className="section-bridge-effects section-bridge-effects--left-only">
+        <div className="section-bridge-effects__left-orbit">
+          <div className="section-bridge-effects__left-orbit-blob" />
+        </div>
+      </div>
       <TeamShowcaseSection />
       <TestimonialsSection />
       <PartnersSection />
