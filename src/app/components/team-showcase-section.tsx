@@ -107,6 +107,7 @@ export default function TeamShowcaseSection() {
               fill
               sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) calc(100vw - 3rem), 717px"
               className="object-contain"
+              quality={55}
               style={{ transform: !isArabic ? "scaleX(-1)" : undefined }}
               draggable={false}
             />

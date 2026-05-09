@@ -91,7 +91,7 @@ function TestimonialCard({
               alt={name}
               fill
               className="object-cover"
-              sizes="57px"
+              sizes="(max-width: 640px) 48px, (max-width: 1024px) 56px, 57px"
             />
           </div>
         </div>

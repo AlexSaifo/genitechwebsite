@@ -197,9 +197,9 @@ export default function StackedCarouselSection() {
                     src={slide.src}
                     alt={slide.alt}
                     fill
-                    sizes="(max-width: 640px) 96vw, (max-width: 1024px) 92vw, 1240px"
+                    sizes="(max-width: 640px) calc(100vw - 4rem), (max-width: 1024px) min(72vw, 560px), 900px"
                     className="object-cover"
-                    priority={index === current}
+                    quality={60}
                     draggable={false}
                   />
                 </div>
