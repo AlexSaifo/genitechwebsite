@@ -40,7 +40,7 @@ export default function GlobalFooter() {
     <footer id="contact" dir={isArabic ? "rtl" : "ltr"} className="relative mt-8 overflow-hidden px-4 pb-10 pt-16 md:px-6 lg:px-8 lg:pt-24">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-24 -top-8 h-[620px] w-[620px] rounded-full opacity-75 blur-[142px]"
+        className="pointer-events-none absolute -right-24  h-[620px] w-[620px] rounded-full opacity-75 blur-[142px]"
         style={{
           background:
             "linear-gradient(29.56deg, rgba(4, 209, 241, 0.22) 1.15%, rgba(124, 81, 189, 0.22) 58.15%, rgba(186, 36, 149, 0.22) 108.11%)",

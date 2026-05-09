@@ -89,6 +89,93 @@ body {
   font-family: var(--font-cairo), "Cairo", sans-serif;
 }
 
+.section-bridge-effects {
+  position: relative;
+  height: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-bridge-effects__right {
+  position: absolute;
+  width: 813.8px;
+  height: 850.78px;
+  right: -166.8px;
+  top: -390px;
+  background: linear-gradient(
+    29.56deg,
+    rgba(4, 209, 241, 0.16) 1.15%,
+    rgba(124, 81, 189, 0.16) 58.15%,
+    rgba(186, 36, 149, 0.16) 108.11%
+  );
+  opacity: 0.66;
+  filter: blur(142.55px);
+  transform: matrix(0.97, 0.26, 0.26, -0.97, 0, 0);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-bridge-effects__left-orbit {
+  position: absolute;
+  width: 291.09px;
+  height: 283.13px;
+  left: -77px;
+  top: -110px;
+  opacity: 0.68;
+  pointer-events: none;
+  z-index: 0;
+  animation: sectionBridgeOrbit360 16s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.section-bridge-effects__left-orbit-blob {
+  position: absolute;
+  width: 239.88px;
+  height: 228.6px;
+  right: 51.2px;
+  top: 0;
+  background: linear-gradient(31.89deg, #01515e 1.88%, #1f0449 56.3%, #5d0046 104.01%);
+  filter: blur(38.65px);
+  transform: matrix(0.97, 0.26, 0.26, -0.97, 0, 0);
+}
+
+@keyframes sectionBridgeOrbit360 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    opacity: 0.68;
+  }
+  25% {
+    transform: translate3d(36px, -24px, 0) rotate(90deg) scale(1.08);
+    opacity: 0.78;
+  }
+  50% {
+    transform: translate3d(72px, 0, 0) rotate(180deg) scale(0.82);
+    opacity: 0.52;
+  }
+  75% {
+    transform: translate3d(36px, 24px, 0) rotate(270deg) scale(1.08);
+    opacity: 0.78;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
+    opacity: 0.68;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section-bridge-effects__right {
+    right: -230px;
+    top: -300px;
+    transform: scale(0.78) matrix(0.97, 0.26, 0.26, -0.97, 0, 0);
+  }
+
+  .section-bridge-effects__left-orbit {
+    left: -110px;
+    top: -80px;
+    transform: scale(0.82);
+  }
+}
+
 .site-main {
   flex: 1;
   padding-top: 6rem;

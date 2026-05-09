@@ -12,6 +12,12 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <div aria-hidden="true" className="section-bridge-effects">
+        <div className="section-bridge-effects__right" />
+        <div className="section-bridge-effects__left-orbit">
+          <div className="section-bridge-effects__left-orbit-blob" />
+        </div>
+      </div>
       <StatisticsSection />
       <ServicesSection />
       <StackedCarouselSection />
