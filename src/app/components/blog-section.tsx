@@ -32,7 +32,7 @@ export default function BlogSection({ isArabic }: { isArabic: boolean }) {
       className="relative px-4 py-14 md:px-6 lg:px-8 lg:py-20"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      <div className="mx-auto flex w-full max-w-310 flex-col items-center gap-14 lg:gap-[84px]">
+      <div className="mx-auto flex w-full max-w-310 flex-col items-center gap-14 lg:gap-21">
         {/* Heading */}
         <h2 className="m-0 w-full bg-[linear-gradient(89.18deg,#0CA5F0_15.53%,#FFFFFF_220.84%)] bg-clip-text text-center text-[26px] font-black leading-[1.35] text-transparent min-[500px]:text-[30px] lg:text-[36px]">
           {t("blogTitle")}
@@ -44,7 +44,7 @@ export default function BlogSection({ isArabic }: { isArabic: boolean }) {
             <article
               key={post.titleKey}
               tabIndex={0}
-              className="group relative w-full max-w-[367px] cursor-pointer transition-[transform,opacity] duration-700 ease-out focus:outline-none"
+              className="group relative w-full max-w-91.75 cursor-pointer transition-[transform,opacity] duration-700 ease-out focus:outline-none"
               style={{
                 height: "391.62px",
                 transitionDelay: `${idx * 120}ms`,
@@ -53,10 +53,10 @@ export default function BlogSection({ isArabic }: { isArabic: boolean }) {
               }}
             >
               {/* Image frame */}
-              <div
-                className="absolute inset-x-0 top-0 overflow-hidden rounded-t-[24px] rounded-b-[4px] bg-white"
-                style={{ bottom: "28.76%" }}
-              >
+               <div
+                 className="absolute inset-x-0 top-0 overflow-hidden rounded-t-3xl rounded-b-sm bg-white"
+                 style={{ bottom: "28.76%" }}
+               >
                 <Image
                   src={post.image}
                   alt={t("blogPostImageAlt")}
@@ -68,32 +68,32 @@ export default function BlogSection({ isArabic }: { isArabic: boolean }) {
               </div>
 
               {/* Dark/blue text panel – expands upward on hover by animating top */}
-              <div
-                className={`absolute bottom-0 flex flex-col justify-between gap-[9px] px-6 py-5
-                  top-[67.41%] left-[2.45%] right-[2.45%]
-                  rounded-t-[4px] rounded-b-[24px]
-                  bg-[#13192B]
-                  transition-[top,background-color,border-radius] duration-300 ease-out
-                  group-hover:top-[59.69%] group-hover:bg-[#086EA8] group-hover:rounded-t-[12px]
-                  group-focus-within:top-[59.69%] group-focus-within:bg-[#086EA8] group-focus-within:rounded-t-[12px]
-                  ${isArabic ? "items-end text-right" : "items-start text-left"}`}
-              >
-                <p className={`m-0 text-[16px] font-normal leading-[30px] text-white
-                  transition-[font-size,line-height] duration-300
-                  group-hover:text-[18px] group-hover:font-bold group-hover:leading-[34px]
-                  group-focus-within:text-[18px] group-focus-within:font-bold group-focus-within:leading-[34px]`}>
+               <div
+                 className={`absolute bottom-0 flex flex-col justify-between gap-2.25 px-6 py-5
+                   top-[67.41%] left-[2.45%] right-[2.45%]
+                   rounded-t-sm rounded-b-3xl
+                   bg-[#13192B]
+                   transition-[top,background-color,border-radius] duration-300 ease-out
+                    group-hover:top-[59.69%] group-hover:bg-[#086EA8] group-hover:rounded-t-xl
+                    group-focus-within:top-[59.69%] group-focus-within:bg-[#086EA8] group-focus-within:rounded-t-xl
+                   ${isArabic ? "items-end text-right" : "items-start text-left"}`}
+               >
+                 <p className={`m-0 text-[16px] font-normal leading-7.5 text-white
+                   transition-[font-size,line-height] duration-300
+                   group-hover:text-[18px] group-hover:font-bold group-hover:leading-8.5
+                   group-focus-within:text-[18px] group-focus-within:font-bold group-focus-within:leading-8.5`}>
                   {t(post.titleKey)}
                 </p>
 
                 {/* Circular arrow button */}
-                <button
-                  className="flex h-[27.62px] w-[27.62px] flex-shrink-0 items-center justify-center rounded-full border border-white text-white
-                    transition-[border-width,background-color,color] duration-200
-                    hover:bg-white hover:text-[#13192B]
-                    group-hover:border-2 group-focus-within:border-2
-                    focus:outline-none"
-                  aria-label={t("blogPostImageAlt")}
-                >
+                 <button
+                   className="flex h-[27.62px] w-[27.62px] shrink-0 items-center justify-center rounded-full border border-white text-white
+                     transition-[border-width,background-color,color] duration-200
+                     hover:bg-white hover:text-[#13192B]
+                     group-hover:border-2 group-focus-within:border-2
+                     focus:outline-none"
+                   aria-label={t("blogPostImageAlt")}
+                 >
                   <svg
                     width="12"
                     height="12"

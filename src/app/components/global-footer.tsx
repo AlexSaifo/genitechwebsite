@@ -38,18 +38,18 @@ export default function GlobalFooter() {
 
   return (
     <footer id="contact" dir={isArabic ? "rtl" : "ltr"} className="relative mt-8 overflow-hidden px-4 pb-10 pt-16 md:px-6 lg:px-8 lg:pt-24">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-24  h-[620px] w-[620px] rounded-full opacity-75 blur-[142px]"
-        style={{
-          background:
-            "linear-gradient(29.56deg, rgba(4, 209, 241, 0.22) 1.15%, rgba(124, 81, 189, 0.22) 58.15%, rgba(186, 36, 149, 0.22) 108.11%)",
-        }}
-      />
+       <div
+         aria-hidden="true"
+         className="pointer-events-none absolute -right-24  h-155 w-155 rounded-full opacity-75 blur-[142px]"
+         style={{
+           background:
+             "linear-gradient(29.56deg, rgba(4, 209, 241, 0.22) 1.15%, rgba(124, 81, 189, 0.22) 58.15%, rgba(186, 36, 149, 0.22) 108.11%)",
+         }}
+       />
 
       <div className="relative mx-auto flex w-full max-w-310 flex-col items-center gap-14 lg:gap-16">
-        <div className="flex w-full flex-col gap-10 lg:flex-row lg:items-stretch lg:justify-between lg:gap-[73px]">
-          <div className={`order-2 w-full rounded-3xl border border-white/12 bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)] p-6 sm:p-8 lg:max-w-[614px] lg:p-10 ${
+           <div className="flex w-full flex-col gap-10 lg:flex-row lg:items-stretch lg:justify-between lg:gap-18.25">
+          <div className={`order-2 w-full rounded-3xl border border-white/12 bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)] p-6 sm:p-8 lg:max-w-153.5 lg:p-10 ${
             isArabic ? "lg:order-2" : "lg:order-1"
           }`}>
             <div className="flex flex-col gap-8">
