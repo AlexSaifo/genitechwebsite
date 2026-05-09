@@ -105,7 +105,7 @@ export default function TeamShowcaseSection() {
               src="/assets/images/Group 19.png"
               alt={sectionText.imageAlt}
               fill
-              sizes="(max-width: 1024px) 100vw, 717px"
+              sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) calc(100vw - 3rem), 717px"
               className="object-contain"
               style={{ transform: !isArabic ? "scaleX(-1)" : undefined }}
               draggable={false}

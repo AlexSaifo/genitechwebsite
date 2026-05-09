@@ -60,6 +60,7 @@ export default function HeroSection() {
                 height={623}
                 className="absolute bottom-0 left-1/2 h-auto w-54 max-w-none -translate-x-1/2"
                 priority
+                fetchPriority="high"
               />
             </div>
 
