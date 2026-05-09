@@ -45,7 +45,8 @@ export default function BlogSection() {
           {POSTS.map((post, idx) => (
             <article
               key={post.titleKey}
-              className="relative w-full max-w-[367px] transition-[transform,opacity] duration-700 ease-out"
+              tabIndex={0}
+              className="group relative w-full max-w-[367px] cursor-pointer transition-[transform,opacity] duration-700 ease-out focus:outline-none"
               style={{
                 height: "391.62px",
                 transitionDelay: `${idx * 120}ms`,
@@ -53,7 +54,7 @@ export default function BlogSection() {
                 opacity: visible ? 1 : 0,
               }}
             >
-              {/* Image frame – top 0% → ~71.24% of card, white bg clips the image */}
+              {/* Image frame */}
               <div
                 className="absolute inset-x-0 top-0 overflow-hidden rounded-t-[24px] rounded-b-[4px] bg-white"
                 style={{ bottom: "28.76%" }}
@@ -68,20 +69,31 @@ export default function BlogSection() {
                 />
               </div>
 
-              {/* Dark text frame – top 67.41% → bottom 0%, slightly overlaps image */}
+              {/* Dark/blue text panel – expands upward on hover by animating top */}
               <div
-                className={`absolute bottom-0 flex flex-col justify-between gap-[9px] rounded-t-[4px] rounded-b-[24px] bg-[#13192B] px-6 py-5 ${
-                  isArabic ? "items-end text-right" : "items-start text-left"
-                }`}
-                style={{ top: "67.41%", left: "2.45%", right: "2.45%" }}
+                className={`absolute bottom-0 flex flex-col justify-between gap-[9px] px-6 py-5
+                  top-[67.41%] left-[2.45%] right-[2.45%]
+                  rounded-t-[4px] rounded-b-[24px]
+                  bg-[#13192B]
+                  transition-[top,background-color,border-radius] duration-300 ease-out
+                  group-hover:top-[59.69%] group-hover:bg-[#086EA8] group-hover:rounded-t-[12px]
+                  group-focus-within:top-[59.69%] group-focus-within:bg-[#086EA8] group-focus-within:rounded-t-[12px]
+                  ${isArabic ? "items-end text-right" : "items-start text-left"}`}
               >
-                <p className="m-0 text-[16px] leading-[30px] text-white">
+                <p className={`m-0 text-[16px] font-normal leading-[30px] text-white
+                  transition-[font-size,line-height] duration-300
+                  group-hover:text-[18px] group-hover:font-bold group-hover:leading-[34px]
+                  group-focus-within:text-[18px] group-focus-within:font-bold group-focus-within:leading-[34px]`}>
                   {t(post.titleKey)}
                 </p>
 
                 {/* Circular arrow button */}
                 <button
-                  className="flex h-[27.62px] w-[27.62px] flex-shrink-0 items-center justify-center rounded-full border border-white text-white transition-colors duration-200 hover:bg-white hover:text-[#13192B] focus:outline-none"
+                  className="flex h-[27.62px] w-[27.62px] flex-shrink-0 items-center justify-center rounded-full border border-white text-white
+                    transition-[border-width,background-color,color] duration-200
+                    hover:bg-white hover:text-[#13192B]
+                    group-hover:border-2 group-focus-within:border-2
+                    focus:outline-none"
                   aria-label={t("blogPostImageAlt")}
                 >
                   <svg
