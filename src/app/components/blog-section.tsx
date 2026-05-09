@@ -87,11 +87,11 @@ export default function BlogSection({ isArabic }: { isArabic: boolean }) {
 
                 {/* Circular arrow button */}
                  <button
-                   className="flex h-[27.62px] w-[27.62px] shrink-0 items-center justify-center rounded-full border border-white text-white
+                   className={`flex h-[27.62px] w-[27.62px] shrink-0 items-center justify-center rounded-full border border-white text-white
                      transition-[border-width,background-color,color] duration-200
                      hover:bg-white hover:text-[#13192B]
                      group-hover:border-2 group-focus-within:border-2
-                     focus:outline-none"
+                     focus:outline-none`}
                    aria-label={t("blogPostImageAlt")}
                  >
                   <svg
