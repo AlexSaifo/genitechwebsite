@@ -2,6 +2,12 @@
   "name": "genitechwebsite",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Ali (Alex) Saifo",
+    "email": "alex@saifo.se - saifoa8816@gmail.com",
+    "url": "https://alex.saifo.se/",
+    "phone": "+963938603698"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
