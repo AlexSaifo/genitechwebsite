@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import BlogSection from "../components/blog-section";
 import HeroSection from "../components/hero-section";
 import PartnersSection from "../components/partners-section";
@@ -7,9 +8,20 @@ import StatisticsSection from "../components/statistics-section";
 import TeamMembersSection from "../components/team-members-section";
 import TeamShowcaseSection from "../components/team-showcase-section";
 import TestimonialsSection from "../components/testimonials-section";
+import { LOCALES, type Locale } from "@/lib/site-config";
 
-export default function HomePage({ params }: { params: { locale: string } }) {
-  const isArabic = params?.locale === "ar";
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
+
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const isArabic = (locale as Locale) === "ar";
   return (
     <>
       <HeroSection />

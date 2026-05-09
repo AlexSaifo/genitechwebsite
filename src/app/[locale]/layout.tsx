@@ -1,16 +1,137 @@
-import { NextIntlClientProvider } from "next-intl";
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import GlobalFooter from "../components/global-footer";
 import GlobalHeader from "../components/global-header";
-import "../globals.css";
+import { cairo, geistMono, geistSans } from "../layout";
+import {
+  DEFAULT_LOCALE,
+  GOOGLE_SITE_VERIFICATION,
+  LOCALE_META,
+  LOCALES,
+  OG_IMAGE,
+  ORGANIZATION,
+  SITE_URL,
+  TWITTER_HANDLE,
+  type Locale,
+} from "@/lib/site-config";
 
-const SUPPORTED_LOCALES = ["ar", "en"] as const;
+// ─── SSG: pre-render /ar and /en at build time ───────────────────────────────
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
 
-export const metadata: Metadata = {
-  title: "GeniTech",
+// All unknown locales → 404 (no dynamic fallback)
+export const dynamicParams = false;
+
+// ─── Per-locale metadata ─────────────────────────────────────────────────────
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  // Required so static generation doesn't fall back to reading request headers.
+  setRequestLocale(locale);
+  const meta = LOCALE_META[(locale as Locale) ?? DEFAULT_LOCALE];
+
+  const canonicalUrl = `${SITE_URL}/${locale}`;
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: meta.title,
+      template: meta.titleTemplate,
+    },
+    description: meta.description,
+    keywords: meta.keywords,
+    authors: [{ name: ORGANIZATION.name, url: SITE_URL }],
+    creator: ORGANIZATION.name,
+    publisher: ORGANIZATION.name,
+
+    // ── Canonical + hreflang alternates ──────────────────────────────────────
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: `${SITE_URL}/en`,
+        ar: `${SITE_URL}/ar`,
+        "x-default": `${SITE_URL}/${DEFAULT_LOCALE}`,
+      },
+    },
+
+    // ── Open Graph ────────────────────────────────────────────────────────────
+    openGraph: {
+      type: "website",
+      locale: meta.ogLocale,
+      alternateLocale: LOCALES.filter((l) => l !== locale).map(
+        (l) => LOCALE_META[l].ogLocale
+      ),
+      url: canonicalUrl,
+      siteName: ORGANIZATION.name,
+      title: meta.title,
+      description: meta.description,
+      images: [
+        {
+          url: OG_IMAGE.path,
+          width: OG_IMAGE.width,
+          height: OG_IMAGE.height,
+          alt: OG_IMAGE.alt,
+        },
+      ],
+    },
+
+    // ── Twitter / X card ─────────────────────────────────────────────────────
+    twitter: {
+      card: "summary_large_image",
+      site: TWITTER_HANDLE,
+      title: meta.title,
+      description: meta.description,
+      images: [OG_IMAGE.path],
+    },
+
+    // ── Crawling / indexing ───────────────────────────────────────────────────
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+
+    // ── Icons ─────────────────────────────────────────────────────────────────
+    icons: {
+      icon: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
+    },
+
+    // ── Search Console ────────────────────────────────────────────────────────
+    verification: GOOGLE_SITE_VERIFICATION
+      ? { google: GOOGLE_SITE_VERIFICATION }
+      : undefined,
+  };
+}
+
+// ─── JSON-LD Organisation schema ─────────────────────────────────────────────
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: ORGANIZATION.name,
+  legalName: ORGANIZATION.legalName,
+  url: SITE_URL,
+  logo: `${SITE_URL}${ORGANIZATION.logoPath}`,
+  sameAs: ORGANIZATION.sameAs,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: ORGANIZATION.contactPoint.contactType,
+    availableLanguage: ORGANIZATION.contactPoint.availableLanguage,
+  },
 };
 
+// ─── Layout ──────────────────────────────────────────────────────────────────
 export default async function LocaleLayout({
   children,
   params,
@@ -20,17 +141,40 @@ export default async function LocaleLayout({
 }>) {
   const { locale } = await params;
 
-  if (!SUPPORTED_LOCALES.includes(locale as (typeof SUPPORTED_LOCALES)[number])) {
+  // Pre-seed the locale cache so next-intl doesn't fall back to headers().
+  // Required for static rendering (SSG).
+  setRequestLocale(locale);
+
+  if (!LOCALES.includes(locale as Locale)) {
     notFound();
   }
+
+  const typedLocale = locale as Locale;
+  const { lang, dir } = LOCALE_META[typedLocale];
 
   const messages = (await import(`../../../messages/${locale}.json`)).default;
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <GlobalHeader />
-      {children}
-      <GlobalFooter />
-    </NextIntlClientProvider>
+    <html
+      lang={lang}
+      dir={dir}
+      className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full antialiased`}
+    >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col">
+        <main className="site-main">
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <GlobalHeader />
+            {children}
+            <GlobalFooter />
+          </NextIntlClientProvider>
+        </main>
+      </body>
+    </html>
   );
 }
