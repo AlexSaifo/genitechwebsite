@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import GradientBorderLink from "./gradient-border-link";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -11,8 +11,6 @@ export default function HeroSection() {
   const locale = useLocale();
   const isArabic = locale === "ar";
   const [showPhone, setShowPhone] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -22,33 +20,14 @@ export default function HeroSection() {
     return () => clearInterval(intervalId);
   }, []);
 
-  useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
   const cardTone =
     "border border-dashed border-white/30 bg-[linear-gradient(230.97deg,rgba(4,209,241,0.04)_-23.56%,rgba(124,81,189,0.04)_89.91%,rgba(186,36,149,0.04)_268.11%)]";
 
   return (
     <section
-      ref={sectionRef}
       id="home"
       dir={isArabic ? "rtl" : "ltr"}
-      className={`${isVisible ? "animate-from-bottom animate-delay-100" : "opacity-0"} relative overflow-hidden px-4 pt-6 md:px-6 lg:px-8 lg:pb-20`}
+      className="animate-from-bottom animate-delay-100 relative overflow-hidden px-4 pt-6 md:px-6 lg:px-8 lg:pb-20"
     >
       <div
         className={`mx-auto grid w-full max-w-310 grid-cols-1 justify-items-center items-center gap-10 pb-3 lg:gap-8 ${

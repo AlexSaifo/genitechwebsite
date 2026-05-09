@@ -97,13 +97,15 @@ body {
   width: 1px;
   height: 1px;
   overflow: hidden;
+  display: none;
 }
 .skip-link:focus,
 .skip-link:active {
-  position: fixed;
+  position: absolute;
   left: 0.5rem;
   top: 0.5rem;
   width: auto;
+  max-width: calc(100% - 1rem);
   height: auto;
   padding: 0.5rem 0.75rem;
   background: #ffffff;
@@ -111,6 +113,9 @@ body {
   z-index: 9999;
   border-radius: 0.375rem;
   box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .section-bridge-effects {
