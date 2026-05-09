@@ -55,13 +55,13 @@ export default function GlobalFooter() {
             <div className="flex flex-col gap-8">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10">
                 <div className={`flex flex-col gap-6 ${isArabic ? "items-end text-right" : "items-start text-left"}`}>
-                  <h3 className="m-0 w-full text-[18px] font-normal leading-[34px] text-white">{t("ourLinks")}</h3>
+                  <h3 className="m-0 w-full text-[18px] font-normal leading-8.5 text-white">{t("ourLinks")}</h3>
                   <div className="flex w-full flex-col gap-4">
                     {linkItems.map((item) => (
                       <Link
                         key={item.key}
                         href={`${localHome}${item.href}`}
-                        className="text-[16px] leading-[30px] text-white/56 transition-colors duration-200 hover:text-white"
+                        className="text-[16px] leading-7.5 text-white/56 transition-colors duration-200 hover:text-white"
                       >
                         {t(`links.${item.key}`)}
                       </Link>
@@ -70,13 +70,13 @@ export default function GlobalFooter() {
                 </div>
 
                 <div className={`flex flex-col gap-6 ${isArabic ? "items-end text-right" : "items-start text-left"}`}>
-                  <h3 className="m-0 w-full text-[18px] font-normal leading-[34px] text-white">{t("ourServices")}</h3>
+                  <h3 className="m-0 w-full text-[18px] font-normal leading-8.5 text-white">{t("ourServices")}</h3>
                   <div className="flex w-full flex-col gap-4">
                     {serviceItems.map((item) => (
                       <Link
                         key={item.key}
                         href={`${localHome}${item.href}`}
-                        className="text-[16px] leading-[30px] text-white/56 transition-colors duration-200 hover:text-white"
+                        className="text-[16px] leading-7.5 text-white/56 transition-colors duration-200 hover:text-white"
                       >
                         {t(`services.${item.key}`)}
                       </Link>
@@ -113,28 +113,28 @@ export default function GlobalFooter() {
                   </a>
                 </div>
 
-                <p className="m-0 text-[16px] leading-[30px] text-white/77">{t("followUs")}</p>
+                <p className="m-0 text-[16px] leading-7.5 text-white/77">{t("followUs")}</p>
               </div>
             </div>
           </div>
 
-          <div className={`order-1 flex w-full flex-col justify-center gap-6 lg:max-w-[553px] ${isArabic ? "items-start text-right lg:order-1" : "items-start text-left lg:order-2"}`}>
+          <div className={`order-1 flex w-full flex-col justify-center gap-6 lg:max-w-138.25 ${isArabic ? "items-start text-right lg:order-1" : "items-start text-left lg:order-2"}`}>
             <Image
               src="/genitech-icon.svg"
               alt={t("logoAlt")}
               width={174}
               height={61}
-              className="h-auto w-[174px]"
+              className="h-auto w-43.5"
               draggable={false}
             />
 
-            <p className="m-0 w-full text-[18px] leading-[34px] text-white">{t("description")}</p>
+            <p className="m-0 w-full text-[18px] leading-8.5 text-white">{t("description")}</p>
 
             <div className="h-px w-full bg-white/44" />
 
             <div className={`flex w-full flex-col gap-3 ${isArabic ? "items-start text-right" : "items-start text-left"}`}>
-              <p className="m-0 text-[18px] leading-[34px] text-white/77">{t("contactTitle")}</p>
-              <div className={`flex w-full flex-col gap-2 text-[18px] leading-[34px] text-white underline sm:flex-row sm:items-center sm:gap-9 `}>
+              <p className="m-0 text-[18px] leading-8.5 text-white/77">{t("contactTitle")}</p>
+              <div className={`flex w-full flex-col gap-2 text-[18px] leading-8.5 text-white underline sm:flex-row sm:items-center sm:gap-9 `}>
                 <a href="mailto:genitechsolutions2025@gmail.com" className="hover:text-white/80">
                   genitechsolutions2025@gmail.com
                 </a>
@@ -146,7 +146,7 @@ export default function GlobalFooter() {
           </div>
         </div>
 
-        <p className="m-0 w-full text-center text-[16px] leading-[30px] text-white/44">
+        <p className="m-0 w-full text-center text-[16px] leading-7.5 text-white/44">
           {t("copyright", { year: currentYear })}
         </p>
       </div>
