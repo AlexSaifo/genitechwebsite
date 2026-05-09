@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 const POSTS = [
   { titleKey: "blogPost1Title", image: "/assets/images/blog-posts/1.png" },
@@ -10,10 +10,8 @@ const POSTS = [
   { titleKey: "blogPost3Title", image: "/assets/images/blog-posts/3.png" },
 ] as const;
 
-export default function BlogSection() {
+export default function BlogSection({ isArabic }: { isArabic: boolean }) {
   const t = useTranslations("Home");
-  const locale = useLocale();
-  const isArabic = locale === "ar";
   const gridRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 

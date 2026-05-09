@@ -8,7 +8,8 @@ import TeamMembersSection from "../components/team-members-section";
 import TeamShowcaseSection from "../components/team-showcase-section";
 import TestimonialsSection from "../components/testimonials-section";
 
-export default function HomePage() {
+export default function HomePage({ params }: { params: { locale: string } }) {
+  const isArabic = params?.locale === "ar";
   return (
     <>
       <HeroSection />
@@ -35,7 +36,7 @@ export default function HomePage() {
       <TeamShowcaseSection />
       <TestimonialsSection />
       <PartnersSection />
-      <BlogSection />
+      <BlogSection isArabic={isArabic} />
     </>
   );
 }
