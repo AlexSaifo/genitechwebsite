@@ -57,7 +57,7 @@ export default function TeamMembersSection() {
         </div>
 
         <div className="grid w-full grid-cols-1 justify-items-center gap-8 min-[560px]:grid-cols-2 min-[560px]:gap-10 lg:grid-cols-4 lg:gap-12 xl:gap-16">
-          {members.map((member, idx) => (
+          {members.map((member) => (
             <article
               key={member.image}
               tabIndex={0}

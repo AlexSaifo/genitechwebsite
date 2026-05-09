@@ -27,7 +27,7 @@ export default function PartnersSection() {
         </div>
 
         {/* Logos row */}
-        <div className="grid w-full grid-cols-2 items-center justify-items-center gap-10 sm:grid-cols-4 sm:gap-8 lg:gap-[131px]">
+        <div className="grid w-full grid-cols-2 items-center justify-items-center gap-10 sm:grid-cols-4 sm:gap-8 lg:gap-32.75">
           {PARTNER_LOGOS.map((src, idx) => (
             <div key={idx} className="flex items-center justify-center opacity-80 transition-opacity duration-300 hover:opacity-100">
               <Image
@@ -35,7 +35,7 @@ export default function PartnersSection() {
                 alt={t("partnersLogoAlt")}
                 width={174}
                 height={63}
-                className="h-auto w-36 sm:w-40 lg:w-[174px]"
+                className="h-auto w-36 sm:w-40 lg:w-43.5"
                 draggable={false}
               />
             </div>
