@@ -81,7 +81,7 @@
     "followUs": "Follow us:",
     "contactTitle": "Contact Us",
     "description": "We believe technology is not just a set of tools, but a way to make a real impact. Our mission is to help you stand out and grow in a crowded market, and to be more than just a service provider - a creative partner blending art and technology to deliver something exceptional.",
-    "copyright": "©2025 GeniTech, All Rights Reserved",
+    "copyright": "©{year} GeniTech, All Rights Reserved",
     "links": {
       "home": "Home",
       "about": "About",

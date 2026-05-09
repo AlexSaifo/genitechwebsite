@@ -34,6 +34,7 @@ export default function GlobalFooter() {
   const locale = useLocale();
   const localHome = `/${locale}`;
   const isArabic = locale === "ar";
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer id="contact" dir={isArabic ? "rtl" : "ltr"} className="relative mt-8 overflow-hidden px-4 pb-10 pt-16 md:px-6 lg:px-8 lg:pt-24">
@@ -145,7 +146,9 @@ export default function GlobalFooter() {
           </div>
         </div>
 
-        <p className="m-0 w-full text-center text-[16px] leading-[30px] text-white/44">{t("copyright")}</p>
+        <p className="m-0 w-full text-center text-[16px] leading-[30px] text-white/44">
+          {t("copyright", { year: currentYear })}
+        </p>
       </div>
     </footer>
   );
