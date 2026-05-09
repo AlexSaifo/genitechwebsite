@@ -146,7 +146,7 @@ export default function GlobalFooter() {
           </div>
         </div>
 
-        <p className="m-0 w-full text-center text-[16px] leading-7.5 text-white/44">
+        <p className="m-0 w-full text-center text-[16px] leading-7.5 text-white/55">
           {t("copyright", { year: currentYear })}
         </p>
       </div>
