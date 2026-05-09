@@ -7,7 +7,7 @@
 
 // ─── Production URL ──────────────────────────────────────────────────────────
 // No trailing slash. Change this when deploying.
-export const SITE_URL = "https://genitech.com";
+export const SITE_URL = "https://genitechwebsite-opsalex.vercel.app";
 
 // ─── Locales ─────────────────────────────────────────────────────────────────
 export const LOCALES = ["ar", "en"] as const;
