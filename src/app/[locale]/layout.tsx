@@ -158,6 +158,7 @@ export default async function LocaleLayout({
     <html
       lang={lang}
       dir={dir}
+      {...{'xmlLang': lang}}
       className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full antialiased`}
     >
       <head>
@@ -170,7 +171,8 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <main className="site-main">
+        <a href="#main-content" className="skip-link">Skip to main content</a>
+        <main id="main-content" className="site-main">
           <NextIntlClientProvider locale={locale} messages={messages}>
             <GlobalHeader />
             {children}
