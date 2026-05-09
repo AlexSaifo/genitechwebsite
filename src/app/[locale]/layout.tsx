@@ -104,8 +104,8 @@ export async function generateMetadata({
 
     // ── Icons ─────────────────────────────────────────────────────────────────
     icons: {
-      icon: "/favicon.ico",
-      apple: "/apple-touch-icon.png",
+      icon: "/genitech-icon.svg",
+      apple: "/genitech-icon.svg",
     },
 
     // ── Search Console ────────────────────────────────────────────────────────
@@ -161,6 +161,9 @@ export default async function LocaleLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full antialiased`}
     >
       <head>
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <link rel="icon" href="/genitech-icon.svg" />
+        <link rel="apple-touch-icon" href="/genitech-icon.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
