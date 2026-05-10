@@ -53,6 +53,8 @@ export default function GlobalHeader() {
     () => getPathWithoutLocale(pathname),
     [pathname],
   );
+  const [activeSection, setActiveSection] = useState<string>("home");
+  const sectionIds = useMemo(() => navItems.map((item) => item.sectionId), []);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -60,6 +62,113 @@ export default function GlobalHeader() {
       document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const updateActiveSectionFromHash = () => {
+      const hash = window.location.hash;
+      const id = hash ? hash.slice(1) : "";
+
+      if (id && sectionIds.includes(id)) {
+        setActiveSection(id);
+      }
+    };
+
+    updateActiveSectionFromHash();
+    window.addEventListener("hashchange", updateActiveSectionFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", updateActiveSectionFromHash);
+    };
+  }, [pathname, sectionIds]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const sectionIdsToObserve = [...sectionIds, "contact"];
+    const elements = sectionIdsToObserve
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => Boolean(element));
+
+    if (!elements.length) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const setSectionFromHash = () => {
+      const hash = window.location.hash;
+      const id = hash ? hash.slice(1) : "";
+      if (id && sectionIds.includes(id)) {
+        setActiveSection(id);
+        return true;
+      }
+      return false;
+    };
+
+    const scrollToHash = () => {
+      const hash = window.location.hash;
+      if (!hash) {
+        return;
+      }
+
+      const target = document.getElementById(hash.slice(1));
+      if (!target) {
+        return;
+      }
+
+      target.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          );
+
+        if (visible.length > 0) {
+          const newActive = visible[0].target.id;
+          setActiveSection((current) =>
+            current !== newActive ? newActive : current,
+          );
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: [0.25, 0.5],
+      },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    const handleHashChange = () => {
+      if (!setSectionFromHash()) {
+        scrollToHash();
+      }
+    };
+
+    setSectionFromHash();
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, [sectionIds]);
 
   const handleLanguageChange = (nextLocale: string) => {
     const nextPath = withLocalePrefix(currentPathWithoutLocale, nextLocale);
@@ -101,13 +210,14 @@ export default function GlobalHeader() {
         <nav className="site-header__nav" aria-label={t("mainNavLabel")}>
           {navItems.map((item) => {
             const href = `${localHome}#${item.sectionId}`;
-            const isActive = item.key === "home" && currentPathWithoutLocale === "/";
+            const isActive = activeSection === item.sectionId;
 
             return (
               <Link
                 key={item.key}
                 href={href}
                 className={`site-header__link ${isActive ? "is-active" : ""}`}
+                onClick={() => setActiveSection(item.sectionId)}
               >
                 {t(item.key)}
               </Link>
@@ -144,8 +254,11 @@ export default function GlobalHeader() {
             <Link
               key={item.key}
               href={`${localHome}#${item.sectionId}`}
-              className="site-header__mobile-link"
-              onClick={() => setIsMenuOpen(false)}
+              className={`site-header__mobile-link ${activeSection === item.sectionId ? "is-active" : ""}`}
+              onClick={() => {
+                setActiveSection(item.sectionId);
+                setIsMenuOpen(false);
+              }}
             >
               {t(item.key)}
             </Link>
