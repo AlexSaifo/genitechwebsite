@@ -28,6 +28,8 @@ const TRACK_HEIGHT = 402;
 const THUMB_HEIGHT = 156;
 const FRAME_WIDTH = 1240;
 const FRAME_HEIGHT = 484;
+const GESTURE_THRESHOLD = 20;
+const GESTURE_DEBOUNCE_MS = 250;
 
 type SlotStyle = {
   offsetY: number;
@@ -44,6 +46,12 @@ const slotStyles: Record<"front" | "middle" | "back", SlotStyle> = {
 
 export default function StackedCarouselSection() {
   const [current, setCurrent] = useState(0);
+  const currentRef = useRef(0);
+  const [isSectionActive, setIsSectionActive] = useState(false);
+  const isSectionActiveRef = useRef(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const lastGestureAtRef = useRef(0);
+  const touchStartYRef = useRef<number | null>(null);
   const cardDragRef = useRef<{
     isDragging: boolean;
     startX: number;
@@ -64,12 +72,123 @@ export default function StackedCarouselSection() {
     setCurrent((prev) => (prev + slides.length - 1) % slides.length);
   };
 
+  const setSectionActive = (nextValue: boolean) => {
+    isSectionActiveRef.current = nextValue;
+    setIsSectionActive(nextValue);
+  };
+
   useEffect(() => {
+    if (isSectionActive) return;
+
     const id = setInterval(() => {
       goNext();
     }, CYCLE_MS);
 
     return () => clearInterval(id);
+  }, [isSectionActive]);
+
+  useEffect(() => {
+    currentRef.current = current;
+  }, [current]);
+
+  useEffect(() => {
+    const canHandleGesture = (target: EventTarget | null) => {
+      const sectionNode = sectionRef.current;
+      if (!sectionNode || !isSectionActiveRef.current) return false;
+      if (!(target instanceof Node)) return false;
+      return sectionNode.contains(target);
+    };
+
+    const advanceByDirection = (direction: 1 | -1) => {
+      if (direction > 0) {
+        setCurrent((prev) => {
+          const next = Math.min(prev + 1, slides.length - 1);
+          currentRef.current = next;
+          return next;
+        });
+        return;
+      }
+
+      setCurrent((prev) => {
+        const next = Math.max(prev - 1, 0);
+        currentRef.current = next;
+        return next;
+      });
+    };
+
+    const handleGesture = (deltaY: number, event: WheelEvent | TouchEvent) => {
+      const magnitude = Math.abs(deltaY);
+      if (magnitude < GESTURE_THRESHOLD) {
+        event.preventDefault();
+        return;
+      }
+
+      const direction: 1 | -1 = deltaY > 0 ? 1 : -1;
+      const isMovingPastLast = direction > 0 && currentRef.current >= slides.length - 1;
+      const isMovingPastFirst = direction < 0 && currentRef.current <= 0;
+
+      if (isMovingPastLast || isMovingPastFirst) {
+        setSectionActive(false);
+        return;
+      }
+
+      event.preventDefault();
+
+      const now = Date.now();
+      if (now - lastGestureAtRef.current < GESTURE_DEBOUNCE_MS) return;
+
+      lastGestureAtRef.current = now;
+      advanceByDirection(direction);
+    };
+
+    const onWheel = (event: WheelEvent) => {
+      if (!canHandleGesture(event.target)) return;
+      handleGesture(event.deltaY, event);
+    };
+
+    const onTouchStart = (event: TouchEvent) => {
+      if (!canHandleGesture(event.target)) return;
+      touchStartYRef.current = event.touches[0]?.clientY ?? null;
+    };
+
+    const onTouchMove = (event: TouchEvent) => {
+      if (!canHandleGesture(event.target)) return;
+
+      const startY = touchStartYRef.current;
+      const currentTouchY = event.touches[0]?.clientY;
+      if (startY == null || currentTouchY == null) return;
+
+      const deltaY = startY - currentTouchY;
+      handleGesture(deltaY, event);
+
+      if (Math.abs(deltaY) >= GESTURE_THRESHOLD) {
+        touchStartYRef.current = currentTouchY;
+      }
+    };
+
+    const onTouchEnd = () => {
+      touchStartYRef.current = null;
+    };
+
+    document.addEventListener("wheel", onWheel, { capture: true, passive: false });
+    window.addEventListener("touchstart", onTouchStart, {
+      capture: true,
+      passive: true,
+    });
+    window.addEventListener("touchmove", onTouchMove, {
+      capture: true,
+      passive: false,
+    });
+    window.addEventListener("touchend", onTouchEnd, { capture: true });
+    window.addEventListener("touchcancel", onTouchEnd, { capture: true });
+
+    return () => {
+      document.removeEventListener("wheel", onWheel, { capture: true });
+      window.removeEventListener("touchstart", onTouchStart, { capture: true });
+      window.removeEventListener("touchmove", onTouchMove, { capture: true });
+      window.removeEventListener("touchend", onTouchEnd, { capture: true });
+      window.removeEventListener("touchcancel", onTouchEnd, { capture: true });
+    };
   }, []);
 
   const roleByIndex = useMemo(() => {
@@ -161,7 +280,15 @@ export default function StackedCarouselSection() {
   };
 
   return (
-    <section id="work" className="relative px-3 py-14 sm:px-4 md:px-6 lg:px-8 lg:py-20">
+    <section
+      id="work"
+      ref={sectionRef}
+      className="relative px-3 py-14 sm:px-4 md:px-6 lg:px-8 lg:py-20"
+      onMouseEnter={() => setSectionActive(true)}
+      onPointerEnter={() => setSectionActive(true)}
+      onPointerLeave={() => setSectionActive(false)}
+      onTouchStart={() => setSectionActive(true)}
+    >
       <div className="mx-auto w-full max-w-350">
         <div
           className="relative mx-auto h-[clamp(260px,52vw,574px)] w-full max-w-350 overflow-hidden rounded-[20px] sm:rounded-3xl lg:rounded-4xl"
