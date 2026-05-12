@@ -23,10 +23,13 @@ const slides: Slide[] = [
   },
 ];
 
-const CYCLE_MS = 5000;
+const TRACK_HEIGHT = 402;
+const THUMB_HEIGHT = 156;
 const FRAME_WIDTH = 1240;
 const FRAME_HEIGHT = 484;
-const DRAG_THRESHOLD = 56;
+const STICKY_TOP = "8.2rem";
+const STICKY_HEIGHT = `calc(100svh - ${STICKY_TOP})`;
+const SECTION_HEIGHT = `calc(3 * (100svh - ${STICKY_TOP}))`;
 
 type SlotStyle = {
   offsetY: number;
@@ -42,45 +45,65 @@ const slotStyles: Record<"front" | "middle" | "back", SlotStyle> = {
 };
 
 export default function StackedCarouselSection() {
-  const [current, setCurrent] = useState(0);
-  const [autoplayResetKey, setAutoplayResetKey] = useState(0);
-  const cardDragRef = useRef<{
-    isDragging: boolean;
-    startX: number;
-    hasSwitched: boolean;
-  }>({
-    isDragging: false,
-    startX: 0,
-    hasSwitched: false,
-  });
-
-  const goNext = () => {
-    setCurrent((prev) => (prev + 1) % slides.length);
-  };
-
-  const goPrev = () => {
-    setCurrent((prev) => (prev + slides.length - 1) % slides.length);
-  };
-
-  const resetAutoplay = () => {
-    setAutoplayResetKey((key) => key + 1);
-  };
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const stickyRef = useRef<HTMLDivElement | null>(null);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (slides.length < 2) return;
+    const updateScrollProgress = () => {
+      const section = sectionRef.current;
+      const sticky = stickyRef.current;
+      if (!section || !sticky) return;
 
-    const id = window.setTimeout(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, CYCLE_MS);
+      const sectionRect = section.getBoundingClientRect();
+      const stickyRect = sticky.getBoundingClientRect();
+      const sectionTop = sectionRect.top + window.scrollY;
+      const scrollableDistance = Math.max(1, sectionRect.height - stickyRect.height);
+      const nextProgress = Math.max(
+        0,
+        Math.min(1, (window.scrollY - sectionTop) / scrollableDistance),
+      );
 
-    return () => window.clearTimeout(id);
-  }, [current, autoplayResetKey]);
+      setScrollProgress((prev) =>
+        Math.abs(prev - nextProgress) < 0.001 ? prev : nextProgress,
+      );
+    };
+
+    const scheduleUpdate = () => {
+      if (rafRef.current !== null) return;
+
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = null;
+        updateScrollProgress();
+      });
+    };
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("orientationchange", scheduleUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("orientationchange", scheduleUpdate);
+
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+  }, []);
+
+  const current = Math.min(
+    slides.length - 1,
+    Math.floor(scrollProgress * slides.length),
+  );
 
   const roleByIndex = useMemo(() => {
     const front = current;
     const middle = (current + slides.length - 1) % slides.length;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const back = (current + slides.length - 2) % slides.length;
 
     return slides.map((_, index) => {
       if (index === front) return "front" as const;
@@ -89,125 +112,77 @@ export default function StackedCarouselSection() {
     });
   }, [current]);
 
-  const onCardsPointerDown: React.PointerEventHandler<HTMLDivElement> = (event) => {
-    cardDragRef.current = {
-      isDragging: true,
-      startX: event.clientX,
-      hasSwitched: false,
-    };
-    event.currentTarget.setPointerCapture(event.pointerId);
-  };
-
-  const onCardsPointerMove: React.PointerEventHandler<HTMLDivElement> = (event) => {
-    const drag = cardDragRef.current;
-    if (!drag.isDragging || drag.hasSwitched) return;
-
-    const deltaX = event.clientX - drag.startX;
-    if (Math.abs(deltaX) < DRAG_THRESHOLD) return;
-
-    if (deltaX < 0) {
-      goNext();
-    } else {
-      goPrev();
-    }
-
-    cardDragRef.current.hasSwitched = true;
-    resetAutoplay();
-  };
-
-  const onCardsPointerEnd: React.PointerEventHandler<HTMLDivElement> = (event) => {
-    cardDragRef.current = {
-      isDragging: false,
-      startX: 0,
-      hasSwitched: false,
-    };
-
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
-  };
+  const thumbOffset =
+    slides.length > 1
+      ? scrollProgress * (TRACK_HEIGHT - THUMB_HEIGHT)
+      : 0;
 
   return (
     <section
+      ref={sectionRef}
       id="work"
-      className="relative px-3 py-14 sm:px-4 md:px-6 lg:px-8 lg:py-20"
+      className="relative px-3 sm:px-4 md:px-6 lg:px-8"
     >
       <div className="mx-auto w-full max-w-350">
         <div
-          className="relative mx-auto h-[clamp(260px,52vw,574px)] w-full max-w-350 overflow-hidden rounded-[20px] sm:rounded-3xl lg:rounded-4xl"
-          onPointerDown={onCardsPointerDown}
-          onPointerMove={onCardsPointerMove}
-          onPointerUp={onCardsPointerEnd}
-          onPointerCancel={onCardsPointerEnd}
-          onPointerLeave={onCardsPointerEnd}
-          style={{ touchAction: "pan-y" }}
+          className="relative w-full"
+          style={{ height: SECTION_HEIGHT }}
         >
-          {slides.map((slide, index) => {
-            const role = roleByIndex[index];
-            const slot = slotStyles[role];
+          <div
+            ref={stickyRef}
+            className="sticky flex w-full items-center justify-center"
+            style={{ top: STICKY_TOP, height: STICKY_HEIGHT }}
+          >
+            <div
+              className="relative mx-auto h-[clamp(260px,52vw,574px)] w-full max-w-350 overflow-hidden rounded-[20px] sm:rounded-3xl lg:rounded-4xl"
+            >
+              {slides.map((slide, index) => {
+                const role = roleByIndex[index];
+                const slot = slotStyles[role];
 
-            return (
-              <div
-                key={slide.src}
-                className="absolute left-1/2 top-1/2 cursor-grab select-none transition-[transform,opacity,filter,box-shadow] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:cursor-grabbing motion-reduce:transition-none"
-                style={{
-                  width: `min(${FRAME_WIDTH}px, calc(100% - 16px))`,
-                  maxWidth: "100%",
-                  opacity: slot.opacity,
-                  zIndex: slot.zIndex,
-                  transform: `translate(-50%, -50%) translateY(${slot.offsetY}px) scale(${slot.scale})`,
-                  boxShadow:
-                    slot.zIndex === 30
-                      ? "0 40px 80px rgba(0,0,0,0.18)"
-                      : "0 24px 48px rgba(0,0,0,0.16)",
-                  filter: slot.zIndex === 30 ? "none" : "saturate(0.88) brightness(0.86)",
-                }}
-              >
-                <div className="relative w-full overflow-hidden rounded-[14px] sm:rounded-[18px] lg:rounded-3xl" style={{ aspectRatio: `${FRAME_WIDTH} / ${FRAME_HEIGHT}` }}>
-                  <Image
-                    src={slide.src}
-                    alt={slide.alt}
-                    fill
-                    sizes="(max-width: 640px) calc(100vw - 4rem), (max-width: 1024px) min(72vw, 560px), 900px"
-                    className="object-cover"
-                    quality={60}
-                    draggable={false}
+                return (
+                  <div
+                    key={slide.src}
+                    className="absolute left-1/2 top-1/2 select-none transition-all duration-1000 ease-out motion-reduce:transition-none"
+                    style={{
+                      width: `min(${FRAME_WIDTH}px, calc(100% - 16px))`,
+                      maxWidth: "100%",
+                      opacity: slot.opacity,
+                      zIndex: slot.zIndex,
+                      transform: `translate(-50%, -50%) translateY(${slot.offsetY}px) scale(${slot.scale})`,
+                      boxShadow:
+                        slot.zIndex === 30
+                          ? "0 40px 80px rgba(0,0,0,0.18)"
+                          : "0 24px 48px rgba(0,0,0,0.16)",
+                    }}
+                  >
+                    <div
+                      className="relative w-full overflow-hidden rounded-[14px] sm:rounded-[18px] lg:rounded-3xl"
+                      style={{ aspectRatio: `${FRAME_WIDTH} / ${FRAME_HEIGHT}` }}
+                    >
+                      <Image
+                        src={slide.src}
+                        alt={slide.alt}
+                        fill
+                        sizes="(max-width: 640px) calc(100vw - 4rem), (max-width: 1024px) min(72vw, 560px), 900px"
+                        className="object-cover"
+                        quality={60}
+                        draggable={false}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+
+              <div className="absolute right-2 top-1/2 hidden -translate-y-1/2 md:block" aria-hidden="true">
+                <div className="relative h-100.5 w-1.5 rounded-[20px] bg-[#3F4042]">
+                  <span
+                    className="absolute left-0 top-0 block h-39 w-full rounded-[20px] bg-[linear-gradient(179.98deg,#086EA8_0.02%,#A81E98_196.44%)] transition-transform duration-1000 ease-out motion-reduce:transition-none"
+                    style={{ transform: `translateY(${thumbOffset}px)` }}
                   />
                 </div>
               </div>
-            );
-          })}
-
-        </div>
-
-        <div className=" flex w-full items-center justify-center ">
-          <div className="flex items-center gap-2 rounded-full bg-white/8 px-2.5 py-1.5 ring-1 ring-white/12 backdrop-blur-sm sm:gap-2.5 sm:px-3 sm:py-2">
-            {slides.map((slide, index) => {
-              const isActive = current === index;
-
-              return (
-                <button
-                  key={slide.src}
-                  type="button"
-                  aria-current={isActive ? "page" : undefined}
-                  aria-label={`Go to carousel slide ${index + 1}`}
-                  className="group flex h-7 w-7 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:h-6 sm:w-6"
-                  onClick={() => {
-                    setCurrent(index);
-                    resetAutoplay();
-                  }}
-                >
-                  <span
-                    className={`block rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-                      isActive
-                        ? "h-3.5 w-3.5 bg-[linear-gradient(135deg,#086EA8_0%,#A81E98_100%)] shadow-[0_0_18px_rgba(168,30,152,0.58)] sm:h-3 sm:w-3"
-                        : "h-2.5 w-2.5 bg-white/45 group-hover:bg-white/75 sm:h-2 sm:w-2"
-                    }`}
-                    aria-hidden="true"
-                  />
-                </button>
-              );
-            })}
+            </div>
           </div>
         </div>
       </div>
